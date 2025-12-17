@@ -1,4 +1,4 @@
-const {user}=require('../apiSchemas/usersSchema')
+const {user,recruiter,jobSeeker,admin}=require('../apiSchemas/usersSchema')
 
 const express=require('express');
 const app= express();
@@ -8,21 +8,36 @@ const getAllUsers=async(req,res)=>{
   console.log(req.user);
   
     try{
-      const found=await user.findById(req.user.id);
+      const found=await admin.findById(req.user.id);
       if(!found)return res.status(400).json({message:"user not found"});
       if(found.role !=="admin")return res.status(403).json({message:"unauthorized user"});
 
-     const users = await user.find();
-     const filtered=[];
-     users.forEach(u=>{
-       filtered.push({
+     const recruiters = await recruiter.find();
+     const jobseekers = await jobSeeker.find();
+
+     const filteredRecruiters=[];
+    
+     recruiters.forEach(u=>{
+       filteredRecruiters.push({
         name:u.name,
         email:u.email,
-        role:u.role
+        role:u.role,
+        id:u.id
        })
      })
 
-    res.status(200).json({success:true,user:filtered})
+     const filteredJobseekers=[];
+
+     jobseekers.forEach(u=>{
+       filteredJobseekers.push({
+        name:u.name,
+        email:u.email,
+        role:u.role,
+        id:u.id
+       })
+     })
+
+    res.status(200).json({success:true,recruiters:filteredRecruiters, jobseekers:filteredJobseekers});
     
     }
   catch(err){
@@ -33,11 +48,15 @@ const getAllUsers=async(req,res)=>{
 
 const deleteAllUsers=async(req,res)=>{
     try{
-        const deleted=await user.deleteMany({});
+        const deletedRecruiters=await recruiter.deleteMany({});
+        const deletedJobSeekers=await jobSeeker.deleteMany({});
+        const deletedUsers=await user.deleteMany({});
+
         res.status(200).json({success:true,message:"all users deleted succefully"});
     }
     catch(err){
-      res.status(500).json({message:err.message})
+      res.status(500).json("something went wrong please try again later");
+      console.log(err.message);
     }
 }
 

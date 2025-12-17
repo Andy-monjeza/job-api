@@ -1,5 +1,6 @@
 const bcrypt=require('bcrypt');
-const {user}=require('../apiSchemas/usersSchema')
+const {user, jobSeeker, recruiter}=require('../apiSchemas/usersSchema')
+
 const jwt=require('jsonwebtoken');
 require('dotenv').config();
 const register=async(req,res)=>{
@@ -10,12 +11,19 @@ const register=async(req,res)=>{
         const existing=await user.findOne({email});
 
         if(existing) return res.status(400).json({message:"user with this email already exists"});
+
           const userRole= role?.trim() ? role : "jobseeker";
      
         const hashedPassword=await bcrypt.hash(password,10);
-
-        const newUser=await user.create({name, email, phone, role:userRole, password:hashedPassword})
-        
+    
+        let newUser;
+        if(userRole === "jobseeker"){
+         newUser=await jobSeeker.create({name, email, phone, role:userRole, password:hashedPassword})
+        }
+        else if(userRole ==="recruiter"){
+           newUser=await recruiter.create({name, email, phone, role:userRole, password:hashedPassword})
+        }
+       
         const sessionToken=jwt.sign({
           name:newUser.name, 
           role, 
@@ -41,17 +49,24 @@ const login=async(req,res)=>{
     const {email,password}=req.body;
 
     try{
-       const found=await user.findOne({email});
-       if(!found) return res.status(400).json({message:"invalid credentials"});
+       const found=await jobSeeker.findOne({email});
+       const foundRec= await recruiter.findOne({email});
+       if(!found && !foundRec){
+         return res.status(400).json({message:"invalid credentials"});
+       } 
+       
+       let verified;
 
-      const verified=await bcrypt.compare(password,found.password);
+       if(found){verified=await bcrypt.compare(password,found.password);}
+       else if(foundRec){verified=await bcrypt.compare(password,found.password);}
+
       if(!verified)return res.status(400).json({message:"invalid credentials"});
 
       const sessionToken=jwt.sign({
-        email:found.email,
-        id:found._id,
-        role:found.role,
-        name:found.name},process.env.JWT_SECRET,
+        email:(found || foundRec).email,
+        id:(found || foundRec)._id,
+        role:(found || foundRec).role,
+        name:(found || foundRec).name},process.env.JWT_SECRET,
         {expiresIn:"1h"
       });
       res.status(200).json({

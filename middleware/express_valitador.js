@@ -1,4 +1,4 @@
-const {body,validationResult}=require('express-validator');
+const {body,param,validationResult}=require('express-validator');
 
 const validateReg=[
     body('name')
@@ -39,6 +39,24 @@ const validateLogin=[
      if(!errors.isEmpty())return res.status(400).json({errors:errors.array()})
       next();
   }
+];
+
+const validateApplicationStatusUpdate=[
+  body("status")
+  .notEmpty().withMessage("please provide the updating status")
+  .isIn(["submitted", "shortlisted", "rejected", "hired"])
+  .withMessage("invalid status value")
+  .trim(),
+  
+  param("id")
+  .notEmpty().withMessage("please provide the application id")
+  .isMongoId(),
+
+  (req,res,next)=>{
+      const errors=validationResult(req);
+      if (!errors.isEmpty()) return res.status(400).json({errors:errors.array()});
+      next();
+    }
 ]
 
-module.exports={validateReg,validateLogin};
+module.exports={validateReg,validateLogin,validateApplicationStatusUpdate};

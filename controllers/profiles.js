@@ -1,10 +1,18 @@
-const {user}=require('../apiSchemas/usersSchema');
+const {user,recruiter,jobSeeker}=require('../apiSchemas/usersSchema');
 
 const getProfile=async(req,res)=>{
     const userId=req.user.id;
+
     try{
-       const userdetails=await user.findById(userId).select('-password');
-       res.status(200).json({success:true,profile:userdetails});
+        let userDetails;
+
+       if(req.user.role === "jobseeker"){
+          userDetails=await jobSeeker.findById(userId).select('-password');
+       }
+       else if(req.user.role === "recruiter"){
+          userDetails=await recruiter.findById(userId).select('-password');
+       }
+       res.status(200).json({success:true,profile:userDetails});
 
     }
     

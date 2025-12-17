@@ -8,4 +8,4 @@ app.use(verifyToken);
 router.get('/all-users',verifyToken,getAllUsers);
 router.delete('/delete-users',deleteAllUsers)
 
-module.exports=router;
+module.exports=router; 

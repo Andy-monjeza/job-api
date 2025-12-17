@@ -5,7 +5,13 @@ const applicationSchema = new mongoose.Schema({
     applicant:{type:mongoose.Schema.Types.ObjectId,ref:'User',required:true},
     resume:{type:String,required:true},
     coverLetter:{type:String},
-    appliedOn:{type:Date,defult:Date.now}
+     status:{
+        type:String,
+        enum:["hired","shortlisted","rejected","submitted"],
+        default:"submitted"
+    },
+    appliedOn:{type:Date,default:Date.now}
+   
 })
 
 module.exports = mongoose.model('application',applicationSchema);
