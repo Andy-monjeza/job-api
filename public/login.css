@@ -106,7 +106,7 @@ body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; }
 
 .password-options {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     margin-top: 1.2rem;
     font-size: 12px;
@@ -183,3 +183,34 @@ body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; }
     text-decoration: none;
     font-weight: 700;
 } 
+
+
+.spinner {
+  width: 18px;
+  height: 18px;
+  border: 3px solid #ffffff;
+  border-bottom-color: transparent;
+  border-radius: 50%;
+  display: inline-block;
+  animation: rotation 1s linear infinite;
+}
+
+@keyframes rotation {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+
+.sign-in-button:disabled {
+  background-color: #3624da;
+  cursor: not-allowed;
+}
+
+.glowgreen{
+    animation: changeshadow 1.3s ease-in ;
+}
+
+@keyframes changeshadow{
+    0%{ box-shadow: 0 8px 32px 0 rgba(89, 182, 92, 0.2);}
+    100%{ box-shadow: 0 8px 32px 0 rgba(39, 37, 37, 0.37);}
+}

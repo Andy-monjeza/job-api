@@ -1,6 +1,7 @@
 const emailInput=document.querySelector('.email');
 const passwordInput=document.querySelector('.password');
 const rememberMe=document.querySelector('.remember-me-checkbox');
+const submitBtn=document.querySelector('.sign-in-button');
 
 const login_card=document.querySelector('.login-card');
 
@@ -10,6 +11,8 @@ const sendRequest=async()=>{
         password:passwordInput.value
     }
     try{
+        submitBtn.disabled=true;
+        submitBtn.innerHTML=`<span class="spinner"></span>`
         const response=await fetch('http://localhost:5000/api/auth/login',{
             method:'POST',
             headers:{
@@ -17,9 +20,24 @@ const sendRequest=async()=>{
             },
             body:JSON.stringify(loginData)
         });
-       const data=await response.json();
+        
+           
+          const data=await response.json();
+            if(data){
+                submitBtn.disabled=false;
+                submitBtn.innerHTML="Sign in";
+            }
+            if(data.success === true){
+             login_card.classList.add('glowgreen');
+             setTimeout(()=>{
+              login_card.classList.remove('glowgreen');
+             },1000)
+            }
         console.log(data);
+        localStorage.setItem('token',data.token);
     
+        
+      
     }catch(err){
       console.log(err.message)
     }
