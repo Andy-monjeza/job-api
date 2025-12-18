@@ -14,7 +14,8 @@ const userSchema = new mongoose.Schema({
   },
   password: {
     type: String,
-    required: true
+    required: true,
+    select:false
   },
   role: {
     type: String,
@@ -30,7 +31,7 @@ const userSchema = new mongoose.Schema({
 const adminSchema = new mongoose.Schema({
   name: { type: String, required: true },
   email: { type: String, unique: true, required: true },
-  password: { type: String, required: true },
+  password: { type: String, required: true ,select:false},
   role: { type: String, default: "admin" },
   phone: String,
   profilePicture: String,
@@ -41,7 +42,7 @@ const adminSchema = new mongoose.Schema({
 const jobSeekerSchema = new mongoose.Schema({
   name: { type: String, required: true },
   email: { type: String, unique: true, required: true },
-  password: { type: String, required: true },
+  password: { type: String, required: true ,select:false},
   location: String,
   profilePicture: String,
 

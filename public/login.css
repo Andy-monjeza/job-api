@@ -44,8 +44,10 @@ body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; }
 }
 
 .login-card {
-    width: fit-content;
-    padding: 2rem 4rem;
+    width: 50vw;
+    max-width: 25rem;
+    min-width: 23rem;
+    padding: 2rem 3.4rem;
     border-radius: 20px;
     text-align: center;
     background-color: rgba(255, 255, 255, 0.08);
@@ -58,15 +60,15 @@ body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; }
 
 .card-title {
     font-size: 1.7rem;
-    margin-bottom: 5px;
+    margin-bottom: 1rem;
     font-weight: 700;
     color:white;
 }
 
-.card-subtitle {
+.error-message {
     font-size: 1rem;
-    color: #a19696;
     margin-bottom: 25px;
+    font-weight: 700;
 }
 
 
@@ -124,8 +126,8 @@ body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; }
     text-decoration: none;
 }
 
-.sign-in-button {
-    background-color:  #4830a0;
+.sign-in-button, .sign-up-button {
+    background-color:#4830a0;
     color: white;
     border: none;
     padding: 12px;
@@ -192,7 +194,7 @@ body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; }
   border-bottom-color: transparent;
   border-radius: 50%;
   display: inline-block;
-  animation: rotation 1s linear infinite;
+  animation: rotation 2s linear infinite;
 }
 
 @keyframes rotation {
@@ -206,11 +208,12 @@ body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; }
   cursor: not-allowed;
 }
 
-.glowgreen{
-    animation: changeshadow 1.3s ease-in ;
+.disapear-message{
+    animation: changeOpacity 2s linear;
 }
 
-@keyframes changeshadow{
-    0%{ box-shadow: 0 8px 32px 0 rgba(89, 182, 92, 0.2);}
-    100%{ box-shadow: 0 8px 32px 0 rgba(39, 37, 37, 0.37);}
+@keyframes changeOpacity{
+    0%{opacity:1}
+    50%{opacity:0.5}
+    100%{opacity:0}
 }

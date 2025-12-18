@@ -5,10 +5,16 @@ const jwt=require('jsonwebtoken');
 require('dotenv').config();
 const register=async(req,res)=>{
     try{
-        const {name,email,phone,password,role}= req.body;
+        const {name,email,password,role}= req.body;
         if(!name || !email || !password)return res.status(400).json({message:"please provide all credentials"});
 
-        const existing=await user.findOne({email});
+        let existing;
+        
+        if(role ==="jobseeker"){
+          existing= await jobSeeker.findOne({email});
+        }else{
+          existing=  await recruiter.findOne({email});
+        }
 
         if(existing) return res.status(400).json({message:"user with this email already exists"});
 
@@ -18,10 +24,10 @@ const register=async(req,res)=>{
     
         let newUser;
         if(userRole === "jobseeker"){
-         newUser=await jobSeeker.create({name, email, phone, role:userRole, password:hashedPassword})
+         newUser=await jobSeeker.create({name, email, role:userRole, password:hashedPassword})
         }
         else if(userRole ==="recruiter"){
-           newUser=await recruiter.create({name, email, phone, role:userRole, password:hashedPassword})
+           newUser=await recruiter.create({name, email, role:userRole, password:hashedPassword})
         }
        
         const sessionToken=jwt.sign({
@@ -41,7 +47,7 @@ const register=async(req,res)=>{
     }
     catch(err){
         console.log(err.message);
-        res.status(500).json('something went wrong please try again later');    
+        res.status(500).json({ success:false, message:'something went wrong please try again later'});    
     }
 }
 
@@ -77,7 +83,7 @@ const login=async(req,res)=>{
     }
   catch(err){
     console.log(err);
-    res.status(500).json({message:"something went wrong please try again later"})
+    res.status(500).json({success:false, message:"something went wrong please try again later"})
   }
     
 
