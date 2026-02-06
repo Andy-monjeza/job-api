@@ -5,8 +5,9 @@ const jobSchema=new mongoose.Schema({
     company:{type:String,required:true},
     location:String,
     salary:Number,
+    category:String,
     requirements:{type:String},
-    postedBy:{type:mongoose.Schema.Types.ObjectId, ref:'User', required:true},
+    postedBy:{type:mongoose.Schema.Types.ObjectId, ref:'recruiter', required:true},
     postedOn:{type:Date,default:Date.now}
 });
 

@@ -6,6 +6,7 @@ const Name=document.querySelector('.name');
 const email=document.querySelector('.email');
 const password=document.querySelector('.password');
 const sign_up=document.querySelector('.sign-up-button');
+const message_box=document.querySelector('.response-message');
 
 let activeRole = 'jobseeker';
 
@@ -55,8 +56,16 @@ const sendRequest=async()=>{
   if(data.success){
     localStorage.setItem('token',data.token);
     console.log(data);
+    
+    message_box.style.display="block";
+    message_box.classList.add("msg-success");
+    message_box.innerHTML=data.message;
+     
     sign_up.innerHTML="Sign Up"
   }else if (!data.success){
+    message_box.style.display="block";
+    message_box.classList.add("msg-error");
+    message_box.innerHTML=data.message;
     sign_up.innerHTML="Sign Up";    
     console.log(data)};
 

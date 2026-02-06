@@ -13,6 +13,7 @@ const jobfindRoute=require('./routes/jobFindRoutes.js')
 const apply = require('./routes/applyRoute.js')
 const reviewApplication=require('./routes/applicationApproveRoute.js');
 const filterJobRoute=require('./routes/job-filter-route.js');
+const assetsRoute=require('./routes/getAssets.js')
 
 app.use(express.static('public'))
 app.use(limit);
@@ -26,6 +27,7 @@ app.use('/api/all-jobs',jobfindRoute)
 app.use('/api/job-application',apply)
 app.use('/api/application-review', reviewApplication);
 app.use('/api/filtered-jobs',filterJobRoute);
+app.use('/api/assets',assetsRoute);
   
 app.listen(5000,()=>{
     connectDB();

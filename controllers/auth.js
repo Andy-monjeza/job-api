@@ -55,34 +55,35 @@ const login=async(req,res)=>{
     const {email,password}=req.body;
 
     try{
-       const found=await jobSeeker.findOne({email});
-       const foundRec= await recruiter.findOne({email});
-       if(!found && !foundRec){
-         return res.status(400).json({message:"invalid credentials"});
-       } 
-       
-       let verified;
+       const seekerResult=await jobSeeker.findOne({email}).select('+password');
+       const recruiterResult= await recruiter.findOne({email}).select('+password');
 
-       if(found){verified=await bcrypt.compare(password,found.password);}
-       else if(foundRec){verified=await bcrypt.compare(password,found.password);}
+       const found= (seekerResult) ? seekerResult : recruiterResult;
 
-      if(!verified)return res.status(400).json({message:"invalid credentials"});
+       if(!found) return res.status(400).json({success:false,message:"invalid login credentials"});
+
+       const verified =await bcrypt.compare(password,found.password);
+       console.log(found.password);
+
+       if(!verified)return res.status(400).json({success:false, message:"invalid login credentials"});
 
       const sessionToken=jwt.sign({
-        email:(found || foundRec).email,
-        id:(found || foundRec)._id,
-        role:(found || foundRec).role,
-        name:(found || foundRec).name},process.env.JWT_SECRET,
-        {expiresIn:"1h"
-      });
-      res.status(200).json({
-        success:true,
-        token:sessionToken, 
-        message:"login successful"
-    });
+          name:found.name, 
+          role:found.role, 
+          email,
+          id:found._id},
+          process.env.JWT_SECRET,
+          {expiresIn:'1h'});
+
+          res.status(200).json({
+            success:true,
+            message:"Logged in successfully",
+            token:sessionToken
+          })
+
     }
   catch(err){
-    console.log(err);
+    console.log(err.message);
     res.status(500).json({success:false, message:"something went wrong please try again later"})
   }
     

@@ -2,7 +2,7 @@ const emailInput=document.querySelector('.email');
 const passwordInput=document.querySelector('.password');
 const rememberMe=document.querySelector('.remember-me-checkbox');
 const submitBtn=document.querySelector('.sign-in-button');
-const messagebox=document.querySelector('.error-message');
+const messagebox=document.querySelector('.response-message');
 
 const login_card=document.querySelector('.login-card');
 
@@ -32,23 +32,23 @@ const sendRequest=async()=>{
 
         if(!data.success){
             messagebox.innerHTML=data.message;
-            messagebox.style.color=" #c21616";
-            messagebox.classList.add('disapear-message');
+            messagebox.style.display="block";    
+            messagebox.classList.add('msg-error');
              setTimeout(() => {
-             messagebox.classList.remove('disapear-message');
-              messagebox.innerHTML="";
+             messagebox.classList.remove('msg-error');
+              messagebox.style.display="none";
         }, 2000);
             return;
         }
           
        else if(data.success){
         localStorage.setItem('token',data.token);
+        messagebox.style.display="block"
         messagebox.innerHTML=data.message
-        messagebox.style.color="#069134ff";
-        messagebox.classList.add('disapear-message');
+        messagebox.classList.add('msg-success');
         setTimeout(() => {
-             messagebox.classList.remove('disapear-message');
-             messagebox.innerHTML="";
+             messagebox.classList.remove('msg-success');
+             messagebox.style.display="none";
         }, 2000);
         }
          
