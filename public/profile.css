@@ -308,7 +308,7 @@
 }
 
 .job-rect-card {
-    background: white;
+    background: rgb(247, 241, 241);
     width: 100%;
     border-radius: 12px;
     padding: 16px;
@@ -389,8 +389,8 @@
 /* Updated Detailed View Button */
 .detail-view-btn {
     background: transparent;
-    color: #4f46e5;
-    border: 1.5px solid #4f46e5;
+    color:  #0f4fc5;
+    border: 1.5px solid  #0f4fc5;
     padding: 6px 16px;
     border-radius: 8px;
     font-size: 0.8rem;
@@ -400,6 +400,6 @@
 }
 
 .detail-view-btn:hover {
-    background: #4f46e5;
+    background:  #0f4fc5;
     color: white;
 }

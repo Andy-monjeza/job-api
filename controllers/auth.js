@@ -3,6 +3,7 @@ const {user, jobSeeker, recruiter}=require('../apiSchemas/usersSchema')
 
 const jwt=require('jsonwebtoken');
 require('dotenv').config();
+
 const register=async(req,res)=>{
     try{
         const {name,email,password,role}= req.body;
@@ -51,43 +52,30 @@ const register=async(req,res)=>{
     }
 }
 
-const login=async(req,res)=>{
-    const {email,password}=req.body;
+const login = async (req, res) => {
+    const { email, password } = req.body;
+    try {
 
-    try{
-       const seekerResult=await jobSeeker.findOne({email}).select('+password');
-       const recruiterResult= await recruiter.findOne({email}).select('+password');
+        const seeker = await jobSeeker.findOne({ email }).select('+password');
+        const recruit = await recruiter.findOne({ email }).select('+password');
 
-       const found= (seekerResult) ? seekerResult : recruiterResult;
+        const found = seeker || recruit;
+        if (!found) return res.status(400).json({ message: "Invalid credentials" });
 
-       if(!found) return res.status(400).json({success:false,message:"invalid login credentials"});
+        const role = seeker ? "jobseeker" : "recruiter";
 
-       const verified =await bcrypt.compare(password,found.password);
-       console.log(found.password);
+        const verified = await bcrypt.compare(password, found.password || found.passwordHash);
+        if (!verified) return res.status(400).json({ message: "Invalid credentials" });
 
-       if(!verified)return res.status(400).json({success:false, message:"invalid login credentials"});
+        const sessionToken = jwt.sign(
+            { name: found.name, role: role, email, id: found._id },
+            process.env.JWT_SECRET,
+            { expiresIn: '1h' }
+        );
 
-      const sessionToken=jwt.sign({
-          name:found.name, 
-          role:found.role, 
-          email,
-          id:found._id},
-          process.env.JWT_SECRET,
-          {expiresIn:'1h'});
-
-          res.status(200).json({
-            success:true,
-            message:"Logged in successfully",
-            token:sessionToken
-          })
-
+        res.status(200).json({ success: true, token: sessionToken });
+    } catch (err) {
+        res.status(500).json({ message: "Error logging in" });
     }
-  catch(err){
-    console.log(err.message);
-    res.status(500).json({success:false, message:"something went wrong please try again later"})
-  }
-    
-
-}
-
+};
 module.exports={register,login};

@@ -43,15 +43,21 @@ const jobSeekerSchema = new mongoose.Schema({
   name: { type: String, required: true },
   email: { type: String, unique: true, required: true },
   password: { type: String, required: true ,select:false},
+  role:{type:String,enum:['jobseeker'],default:"jobseeker"},
+  phoneNo:Number,
   location: String,
   profilePicture: String,
+  coverPhoto:String,
+  Proffession:String,
+  about:String,
 
-  workExperience: [{
-    company: String,
-    position: String,
-    startDate: Date,
-    endDate: Date,
-    description: String
+  socialLinks:[{
+    instagram:String,
+    facebook:String,
+    github:String,
+    linkedin:String,
+    website:String,
+    x:String,
   }],
   education: [{
     school: String,
@@ -62,6 +68,7 @@ const jobSeekerSchema = new mongoose.Schema({
   }],
   skills: [String],
   resumeUrl: String,
+  CVurl:String,
   portfolioUrl: String,
 
   createdAt: { type: Date, default: Date.now }
@@ -70,7 +77,8 @@ const jobSeekerSchema = new mongoose.Schema({
 const recruiterSchema = new mongoose.Schema({
   name: { type: String, required: true },
   email: { type: String, unique: true, required: true },
-  passwordHash: { type: String, required: true },
+  password: { type: String, required: true },
+  role:{type:String,enum: ['recruiter'],default:"recruiter"},
 
   companyName: { type: String, required: true },
   companyWebsite: String,

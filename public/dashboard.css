@@ -4,12 +4,11 @@
     box-sizing: border-box;
 }
 
-body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; }
-
 body {
-    height: 100vh;
-    color: white;
-}
+     font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      height: 100vh;
+      color: white;
+     }
 
 .wrapper {
     display: flex; 
@@ -125,6 +124,10 @@ body {
     display: flex;
     align-items: center;
     gap: 0.5em;
+    
+}
+.header-left-side h5{
+    font-weight: 400;
 }
 .quick-action{
     padding: 0.8em 2em;

@@ -17,4 +17,22 @@ const getProfilePage=async(req,res)=>{
         res.status(500).send("Something went wrong, please try again sometime ");
     }
 }
-module.exports ={getDashBoardPage,getProfilePage};
+
+const getSavedJobs=async(req,res)=>{
+    try {
+            return res.sendFile(path.join(__dirname, '../public/saved-jobs.html'));
+        
+    } catch (error) {
+        res.status(500).send("Something went wrong, please try again sometime ");
+    }
+}
+
+const getMyApplications=async(req,res)=>{
+    try {
+            return res.sendFile(path.join(__dirname, '../public/my-applications.html'));
+        
+    } catch (error) {
+        res.status(500).send("Something went wrong, please try again sometime ");
+    }
+}
+module.exports ={getDashBoardPage,getProfilePage,getSavedJobs,getMyApplications};
