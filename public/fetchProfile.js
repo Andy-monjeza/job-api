@@ -35,21 +35,32 @@ export const buildProfile=async()=>{
     const coverPhoto=document.querySelector('.cover-photo');
     const email=document.querySelectorAll('.email');
     const topSocialLink=document.querySelector('.top-social-link');
-    const location=document.querySelector('.location')
-    const prodffession=document.querySelector('.skillset');
+    const location=document.querySelectorAll('.location')
+    const profession=document.querySelector('.skillset') || null;
     const phoneNo=document.querySelector('.phoneNo');
-
+ 
     try{
         const profile=await fetchUserProfile();
         if(profile){ 
             userName.textContent=profile.userDetails.name;
+
             email.forEach(e=>{
-                e.textContent=profile.userDetails.email;
+                if(e.classList.contains('info-part')){
+                    e.innerHTML=profile.userDetails.email;
+                }else{e.innerHTML=`<i class="fa-solid fa-envelope"></i>`+ profile.userDetails.email;}
+                
             })
+              location.forEach(e=>{
+                if(e.classList.contains('info-part')){
+                    e.innerHTML=profile.userDetails.location;
+                }else{e.innerHTML=`<i class="fa-solid fa-location-dot"></i>`+ profile.userDetails.location;}
+                
+            })
+            profilePicture.src=profile.userDetails.profilePicture.url 
             topSocialLink.textContent=profile.userDetails.prefsocialLink || ' ';
-            phoneNo.textContent=profile.userDetails.phoneNo
-            prodffession.textContent=profile.userDetails.prodffession;
-            location.textContent=profile.userDetails.location;  
+            phoneNo.textContent= '+' + profile.userDetails.phoneNo
+            profession.textContent=profile.userDetails.Profession;
+            location.innerHTML=  `<i class="fa-solid fa-location-dot"></i>` + profile.userDetails.location;  
             console.log(profile);
         }
     }catch(err){

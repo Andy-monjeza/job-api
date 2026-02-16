@@ -46,9 +46,9 @@ const jobSeekerSchema = new mongoose.Schema({
   role:{type:String,enum:['jobseeker'],default:"jobseeker"},
   phoneNo:Number,
   location: String,
-  profilePicture: String,
-  coverPhoto:String,
-  Proffession:String,
+  profilePicture: {url:String, publicId:String},
+  coverPhoto:{url:String, publicId:String},
+  Profession:String,
   about:String,
 
   socialLinks:[{

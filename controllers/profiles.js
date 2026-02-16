@@ -17,8 +17,52 @@ const getProfile = async (req, res) => {
         }
 
         res.status(200).json({ success: true, userDetails });
+        console.log(userDetails)
     } catch (err) {
         res.status(500).json({ success: false, message: "Server error" });
     }
 };
-module.exports={getProfile};
+
+const updateProfile = async (req, res) => {
+    const { id, role } = req.user;
+    
+   
+    let dataToUpdate = { ...req.body };
+
+    try {
+        const Model = role === "jobseeker" ? jobSeeker : recruiter;
+
+        const protectedFields = ['password', 'role', 'email', '_id', 'createdAt'];
+        protectedFields.forEach(field => delete dataToUpdate[field]);
+
+        const updatedUser = await Model.findByIdAndUpdate(
+            id,
+            { $set: dataToUpdate }, 
+            { 
+                new: true,  
+                runValidators: true, 
+                context: 'query' 
+            }
+        ).select('-password');
+
+        if (!updatedUser) {
+            return res.status(404).json({ success: false, message: "User not found" });
+        }
+
+        res.status(200).json({
+            success: true,
+            message: "Profile updated successfully!",
+            userDetails: updatedUser
+        });
+
+    } catch (err) {
+        console.error("Update Error:", err.message);
+        
+        if (err.code === 11000) {
+            return res.status(400).json({ success: false, message: "That email or unique field is already in use" });
+        }
+
+        res.status(500).json({ success: false, message: "Internal server error during update" });
+    }
+};
+module.exports={getProfile,updateProfile};
