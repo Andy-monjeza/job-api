@@ -1,9 +1,8 @@
 const mongoose=require('mongoose');
-const uri = "mongodb+srv://Andy:Merlin_2618%3F%23@nthambiepotraits.bkvblp0.mongodb.net/nthambieDB?retryWrites=true&w=majority";
 
 async function connectDB(){
     try{
-      await mongoose.connect(uri);
+      await mongoose.connect(process.env.DbUri);
        console.log("connected to mongoDb")
     }
     catch(err){

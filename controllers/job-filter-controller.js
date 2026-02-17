@@ -1,4 +1,4 @@
-const jobs = require('../apiSchemas/jobSchema.js');
+const {jobs} = require('../apiSchemas/jobSchema.js');
 
 const filterJobs=async(req,res)=>{
  const user= req.user;

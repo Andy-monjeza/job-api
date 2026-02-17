@@ -10,13 +10,14 @@ const applyJob=async(req,res)=>{
     const alreadyApplied=await application.findOne({applicant:user.id});
     if (alreadyApplied)return res.status(400).json({message:"you are already applied to this job"});
 
-    const applied=application.create({
+    const applied=await application.create({
         applicant:user.id,
         job:jobId,
         resume,
         coverLetter        
     })
-    res.status(200).json({message:"applied successfully"})
+    if(applied)res.status(200).json({message:"applied successfully"});
+
     }
     catch(err){
         console.log(err.message);

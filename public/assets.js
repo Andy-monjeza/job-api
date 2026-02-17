@@ -1,5 +1,6 @@
 import { initChart } from "./chart.js";
 import { buildProfile } from "./fetchProfile.js";
+import { buildMyApplicationTab } from "./fetchApplications.js";
 
 const contentSection = document.querySelector('.content-bar');
 const sideBar = document.querySelector('.sidebar')
@@ -7,7 +8,6 @@ const dashBtn=document.querySelector('.dashBtn');
 const profileBtn=document.querySelector('.profile');
 const savedJbsOption=document.querySelector('.saved-jobs-option');
 const MyApplicationsBtn=document.querySelector('.my-applications-btn');
- 
 
 const fetchData = async (url, method, contType) => {
     try {
@@ -89,7 +89,9 @@ const getMyApplications=async()=>{
           contentSection.innerHTML = data;
       }
   }
+  buildMyApplicationTab();
 }
+
 savedJbsOption.addEventListener('click',getSavedJobs);
 profileBtn.addEventListener('click',getProfile);
 MyApplicationsBtn.addEventListener('click',getMyApplications);

@@ -15,6 +15,9 @@ const reviewApplication=require('./routes/applicationApproveRoute.js');
 const filterJobRoute=require('./routes/job-filter-route.js');
 const assetsRoute=require('./routes/getAssets.js')
 const fileUploadRoute=require('./routes/image-upload-route.js')
+const savedJobsRoute=require('./routes/savedJobs.js')
+const myAPplicationsRoute=require('./routes/myApplicationsRoute.js')
+
 app.use(express.static('public'))
 app.use(limit);
 app.use(logger);
@@ -29,6 +32,8 @@ app.use('/api/application-review', reviewApplication);
 app.use('/api/filtered-jobs',filterJobRoute);
 app.use('/api/assets',assetsRoute);
 app.use('/api/uploads',fileUploadRoute);
+app.use('/api/saved-jobs',savedJobsRoute);
+app.use('/api/applications',myAPplicationsRoute);
   
 app.listen(5000,()=>{
     connectDB();
