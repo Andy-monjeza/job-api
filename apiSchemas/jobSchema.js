@@ -7,6 +7,7 @@ const jobSchema=new mongoose.Schema({
     salary:Number,
     category:String,
     description:{type:String},
+    dueDate:{type:Date},
     requirements:{type:String},
     postedBy:{type:mongoose.Schema.Types.ObjectId, ref:'recruiter', required:true},
     postedOn:{type:Date,default:Date.now}

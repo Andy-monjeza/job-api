@@ -72,9 +72,9 @@ const fetchApplications= async()=>{
     });
 
 
-    counterEls.hired.textContent = counts.hired;
-    counterEls.shortlisted.textContent = counts.shortlisted;
-    counterEls.rejected.textContent = counts.rejected;
+    counterEls.hired.textContent = counts.hired + " Hired";
+    counterEls.shortlisted.textContent = counts.shortlisted + " Shortlisted";
+    counterEls.rejected.textContent = counts.rejected + " Rejected";
 
     
 
@@ -89,7 +89,7 @@ if (applications.length > 0) {
                 Looks like you haven't applied to any jobs yet. Your next big career move is just a click away!
             </p>
             <a href="browse-jobs.html" class="btn-primary" style="display: inline-block; margin-top: 20px; text-decoration: none;">
-                Find Your First Job
+                Find Your Next Job
             </a>
         </div>
     `;

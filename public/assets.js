@@ -1,6 +1,7 @@
 import { initChart } from "./chart.js";
 import { buildProfile } from "./fetchProfile.js";
 import { buildMyApplicationTab } from "./fetchApplications.js";
+import { buildSavedJobsTab } from "./fetchSavedJobs.js";
 
 const contentSection = document.querySelector('.content-bar');
 const sideBar = document.querySelector('.sidebar')
@@ -76,6 +77,7 @@ const getSavedJobs=async()=>{
           contentSection.innerHTML = data;
       }
   }
+  buildSavedJobsTab();
 }
 
 const getMyApplications=async()=>{

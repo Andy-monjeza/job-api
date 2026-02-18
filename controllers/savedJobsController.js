@@ -4,7 +4,7 @@ const getSavedJobs=async(req,res)=>{
     const userId=req.user.id;
     try{
        const mySavedJobs = await savedJobs.find({ user: userId }).populate('job').exec();
-       if(!mySavedJobs) return res.status(404).json({success:false,message:"You dont have any saved Jobs at the moment"});
+    
        res.status(200).json({success:true,savedJobs:mySavedJobs});
     }catch(err){
         console.log(err.message)
