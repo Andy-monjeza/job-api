@@ -1,45 +1,51 @@
-
-export const initChart=()=>{
-const options={
-        chart:{type:'area',
-        height:'100%',
-        width:'100%',
-        toolbar:{show:false},
-        zoom:{enabled:false},        
-    },
-        dataLabels:{enabled:false},
-        series:[{name:'Profile Weekly Views', data:[8,10,15,20] }],
-        xaxis:{
-            categories:['sun','mon','tue','wed','thur','fri','sat'],
-            axisBorder: { show: false },
-            axisTicks: { show: true }
+ export const initChart = (initialData = [0,0, 0, 0, 0, 0, 0]) => {
+    const options = {
+        chart: {
+            type: 'area',
+            height: '100%',
+            width: '100%',
+            toolbar: { show: false },
+            zoom: { enabled: false },
         },
-        yaxis:{
+        colors: ['#0f4fc5'], 
+        dataLabels: { enabled: false },
+        series: [{ 
+            name: 'Market Demand', 
+            data: initialData 
+        }],
+        xaxis: {
+            categories: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
             axisBorder: { show: false },
             axisTicks: { show: false }
         },
-        grid:{show:false},
-        stroke:{
-            curve:'smooth',
-            width:5
+        yaxis: {
+            show: true,
+            labels: { show: true }
+        },
+        grid: { show: false },
+        stroke: {
+            curve: 'smooth',
+            width: 4
+        },
+        fill: {
+            type: 'gradient',
+            gradient: {
+                shadeIntensity: 1,
+                opacityFrom: 0.1,
+                opacityTo: 0.7,
+                stops: [0, 90, 100]
+            }
         },
         tooltip: {
-        enabled: true,
-        theme: 'dark',       
-        style: {
-        fontSize: '12px',
-        color:'black',
-    },
-        shared: true,          
-        followCursor: true,          
-        x: { show: true },       
-        y: { formatter: val => val + " visitors" } 
+            enabled: true,
+            theme: 'dark',
+            
+            y: { formatter: val => val + " New Jobs" } 
         }
+    };
 
-        
-      }
-
-      const chart=new ApexCharts(document.querySelector("#chart"),options);
-       chart.render();
-}
-
+    const chart = new ApexCharts(document.querySelector("#chart"), options);
+    chart.render();
+    
+    return chart; 
+};

@@ -2,6 +2,8 @@ import { initChart } from "./chart.js";
 import { buildProfile } from "./fetchProfile.js";
 import { buildMyApplicationTab } from "./fetchApplications.js";
 import { buildSavedJobsTab } from "./fetchSavedJobs.js";
+import { buildDashBoard } from "./dashboard.js";
+import { updateApplicationsCount } from "./dashboard.js";
 
 const contentSection = document.querySelector('.content-bar');
 const sideBar = document.querySelector('.sidebar')
@@ -9,6 +11,14 @@ const dashBtn=document.querySelector('.dashBtn');
 const profileBtn=document.querySelector('.profile');
 const savedJbsOption=document.querySelector('.saved-jobs-option');
 const MyApplicationsBtn=document.querySelector('.my-applications-btn');
+const settingsBtn=document.querySelector('.settings');
+const followedRecruiterBtn=document.querySelector('.followed-recs');
+const messagesBtn=document.querySelector('.messagesBtn')
+ const matchingJobsThisWeekCount = document.querySelector('.market-demand-count');
+ let applicationsNum;
+ 
+
+
 
 const fetchData = async (url, method, contType) => {
     try {
@@ -31,25 +41,30 @@ const fetchData = async (url, method, contType) => {
 
 dashBtn.addEventListener('click', async () => {
 
-        console.log('Fetching dashboard...');
+        
 
         const data = await fetchData('http://localhost:5000/api/assets/dashboard', 'GET', 'text/html');
-        
-        if (data) {
-            contentSection.innerHTML = data;
+               const applicationCount=await updateApplicationsCount();
+               console.log(applicationCount)
             if (data) {
-    contentSection.innerHTML = data;
-    
-    setTimeout(() => {
-        const chartElement = document.querySelector("#chart");
-        if (chartElement) {
-            initChart();
-        } else {
-            console.error("Chart container not found in the fetched HTML!");
-        }
+                contentSection.innerHTML = data;
+                setTimeout(() => {
+                const chartElement = document.querySelector("#chart");
+                if (chartElement) {
+                    applicationsNum= document.querySelector('.applications-count');
+                    console.log('Fetching dashboard...');
+                    initChart();
+                    buildDashBoard();
+                    applicationsNum.textContent=applicationCount.myApplications.length;
+                } else {
+                    console.error("Chart container not found in the fetched HTML!");
+                }
+                 
     }, 10); 
+
+    
 }
-        }
+        
     
 });
 

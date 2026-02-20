@@ -17,11 +17,13 @@ const assetsRoute=require('./routes/getAssets.js')
 const fileUploadRoute=require('./routes/image-upload-route.js')
 const savedJobsRoute=require('./routes/savedJobs.js')
 const myAPplicationsRoute=require('./routes/myApplicationsRoute.js')
+const getMarketDemandStatsRoute=require('./routes/marketDemandStatsRoute.js');
 
 app.use(express.static('public'))
 app.use(limit);
 app.use(logger);
 app.use(express.json());
+
 app.use('/api/auth',auth);
 app.use('/api/user',profileRoute)
 app.use('/api/users',getUsers)
@@ -34,6 +36,7 @@ app.use('/api/assets',assetsRoute);
 app.use('/api/uploads',fileUploadRoute);
 app.use('/api/saved-jobs',savedJobsRoute);
 app.use('/api/applications',myAPplicationsRoute);
+app.use('/api/market-demand',getMarketDemandStatsRoute);
   
 app.listen(5000,()=>{
     connectDB();

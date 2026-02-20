@@ -136,6 +136,9 @@ body {
     color: white;
     background:rgb(15, 79, 197);
     font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
     cursor:pointer;
 }
 .bell-icon{

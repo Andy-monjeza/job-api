@@ -49,6 +49,7 @@ const jobSeekerSchema = new mongoose.Schema({
   profilePicture: {url:String, publicId:String},
   coverPhoto:{url:String, publicId:String},
   Profession:String,
+  preferedCategory:String,
   about:String,
 
   socialLinks:[{

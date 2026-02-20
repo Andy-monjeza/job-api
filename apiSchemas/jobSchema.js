@@ -11,7 +11,7 @@ const jobSchema=new mongoose.Schema({
     requirements:{type:String},
     postedBy:{type:mongoose.Schema.Types.ObjectId, ref:'recruiter', required:true},
     postedOn:{type:Date,default:Date.now}
-});
+},{timestamps:true});
 
 const savedJobsSchema=new mongoose.Schema({
     job:{type:mongoose.Schema.Types.ObjectId, ref:'job',required:true},
