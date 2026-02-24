@@ -17,7 +17,7 @@ export const buildSavedJobsTab = async () => {
         const appData = await appRes.json();
 
        
-        const savedJobs = savedData.jobs || [];
+        const savedJobs = savedData.savedJobs || [];
         const applications = appData.myApplications || [];
 
         
@@ -90,14 +90,14 @@ const emptySavedSVG = `
     savedItems.forEach(item => {
         const job = item.job;
         const alreadyApplied = appliedJobIds.includes(job._id.toString());
-        
+        const appliedDate=new Date().toDateString(item.savedAt)
     
-        const deadline = job.deadline ? new Date(job.deadline).toLocaleDateString('en-GB', { day: 'numeric', month: 'short' }) : 'N/A';
+        const deadline = job.deadline ? new Date(job.dueDate).toLocaleDateString('en-GB', { day: 'numeric', month: 'short' }) : 'N/A';
 
         html += `
         <div class="job-rect-card">
                 <div class="job-card-header">
-                    <img src="${job.postedBy?.profilePicture || 'default.png'}" alt="Company" class="company-logo-rect">
+                    <img src="${job.postedBy?.profilePicture || 'https://picsum.photos/seed/tech1/100'}" alt="Company" class="company-logo-rect">
                     <div class="job-main-info">
                         <span class="job-role-title">${job.title}</span>
                         <span class="company-meta">${job.company} • Ends: ${deadline}</span>
@@ -111,7 +111,7 @@ const emptySavedSVG = `
 
                 <div class="job-card-footer">
                     <div class="job-body">
-                            <p>Saved Jobs • Saved On ${item.savedAt}</p>
+                            <p>Saved Jobs • Saved On ${appliedDate}</p>
                         </div>
                     <button class="detail-view-btn">Apply</button>
                 </div>

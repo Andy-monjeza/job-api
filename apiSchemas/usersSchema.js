@@ -45,8 +45,20 @@ const jobSeekerSchema = new mongoose.Schema({
   password: { type: String, required: true ,select:false},
   role:{type:String,enum:['jobseeker'],default:"jobseeker"},
   phoneNo:Number,
+  skills:{
+    type:[String],
+    defult:[]
+  },
   location: String,
-  profilePicture: {url:String, publicId:String},
+  profilePicture: {
+    url: {
+        type: String
+    },
+    publicId: {
+        type: String,
+        default: null
+    }
+},
   coverPhoto:{url:String, publicId:String},
   Profession:String,
   preferedCategory:String,
@@ -81,8 +93,7 @@ const recruiterSchema = new mongoose.Schema({
   password: { type: String, required: true },
   role:{type:String,enum: ['recruiter'],default:"recruiter"},
   profilePicture: {url:String, publicId:String},
-
-  companyName: { type: String, required: true },
+  companyName: { type: String },
   companyWebsite: String,
   companyDescription: String,
   location: String,

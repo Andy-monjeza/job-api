@@ -120,7 +120,7 @@ body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; }
 }
 
 .sign-in-button, .sign-up-button {
-    background-color:#4830a0;
+    background-color:#213edd;
     color: white;
     border: none;
     padding: 12px;
@@ -133,7 +133,7 @@ body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; }
 }
 
 .sign-in-button:hover {
-    background-color: #6a4cd3;
+    background-color: #1f51f3;
 }
 
 .social-login {
@@ -197,7 +197,7 @@ body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; }
 
 
 .sign-in-button:disabled {
-  background-color: #3624da;
+  background-color: #194ddb;
   cursor: not-allowed;
 }
 

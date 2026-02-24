@@ -56,15 +56,20 @@ const fetchApplications= async()=>{
         listHTML += `
         <div class="job-rect-card">
             <div class="job-card-header">
-                <img src="${a.job?.postedBy?.profilePicture || 'default.png'}" class="company-logo-rect">
+                <img src="${a.job?.postedBy?.profilePicture || 'https://picsum.photos/seed/tech1/100'}" class="company-logo-rect">
                 <div class="job-main-info">
                     <span class="job-role-title">${a.job?.title}</span>
                     <span class="company-meta">${a.job?.category} • Applied ${appliedDate}</span>
                 </div>
             </div>
+
+            <div class="job-details-text">
+                 ${a.job.description}
+             </div>
+
             <div class="job-card-footer">
                 <div class="job-body">
-                    <p>${a.job?.postedBy?.companyName} • ${a.job?.location}</p>
+                    <p>${a.job?.postedBy?.name} • ${a.job?.location}</p>
                 </div>
                 <div class="job-status status">${a.status}</div>
             </div>

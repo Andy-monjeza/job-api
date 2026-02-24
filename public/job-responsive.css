@@ -1,0 +1,80 @@
+@media (max-width: 850px) {
+    body {
+        overflow-x: hidden; /* Prevent horizontal scrollbar during slide */
+    }
+
+    .main-container {
+        display: flex;
+        width: 201vw; /* Two screen-widths side-by-side */
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        height: calc(100vh - 5rem); /* Keep your header height in mind */
+    }
+
+    .job-browse-side, 
+    .job-preview-side {
+        width: 100vw; 
+        height: 100%;
+        overflow-y: auto; 
+        display: block; 
+    }
+
+    /* Remove any previous 'display: none' that might be hiding the side */
+    .job-preview-side {
+        display: block !important; 
+        background: white;
+        line-height: 2em;
+    }
+    .content-section{
+      margin-top: 1em;
+    }
+    ::-webkit-scrollbar{
+      display: none;
+    }
+
+    /* The Slide Action */
+    body.preview-mode .main-container {
+        transform: translateX(-100vw);
+    }
+
+    /* Only show Back Button on mobile */
+    .back-btn {
+        display: flex !important;
+        margin-bottom: 1rem;
+    }
+}
+
+
+
+/* Tablet Styles */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .main-container {
+        display: flex;
+        width: 100% !important; /* Reset the 200vw from mobile */
+        transform: none !important; /* Disable the slide effect */
+    }
+
+    .job-browse-side {
+        width: 320px; /* Narrower list for tablet */
+        flex-shrink: 0;
+    }
+
+    .job-preview-side {
+        width: auto;
+        flex-grow: 1;
+        padding: 2rem; /* Balanced breathing room */
+    }
+
+    /* Adjusting card size for smaller sidebar */
+    .mini-card {
+        padding: 1rem;
+    }
+    
+    .mini-card strong {
+        font-size: 0.95rem;
+    }
+
+    /* Hide the mobile back button since we have a split view again */
+    .back-btn {
+        display: none !important;
+    }
+}

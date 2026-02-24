@@ -45,6 +45,7 @@ const sendRequest=async()=>{
         localStorage.setItem('token',data.token);
         messagebox.style.display="block"
         messagebox.innerHTML=data.message
+        window.location.replace("index.html");
         messagebox.classList.add('msg-success');
         setTimeout(() => {
              messagebox.classList.remove('msg-success');

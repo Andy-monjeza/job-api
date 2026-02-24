@@ -41,11 +41,8 @@ const fetchData = async (url, method, contType) => {
 
 dashBtn.addEventListener('click', async () => {
 
-        
-
-        const data = await fetchData('http://localhost:5000/api/assets/dashboard', 'GET', 'text/html');
+         const data = await fetchData('http://localhost:5000/api/assets/dashboard', 'GET', 'text/html');
                const applicationCount=await updateApplicationsCount();
-               console.log(applicationCount)
             if (data) {
                 contentSection.innerHTML = data;
                 setTimeout(() => {

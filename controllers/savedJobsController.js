@@ -13,7 +13,7 @@ const getSavedJobs=async(req,res)=>{
 
 const saveJob = async (req, res) => {
     const userId = req.user.id;
-    const { jobId } = req.body;
+    const { jobId } = req.params;
 
     try {
     

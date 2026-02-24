@@ -6,3 +6,7 @@ const {createJob}=require('../controllers/jobCreate');
 router.post('/post-job',verifyToken,createJob)
 
 module.exports=router;
+
+
+
+

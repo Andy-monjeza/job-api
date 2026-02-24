@@ -2,7 +2,6 @@ const {body,param,validationResult}=require('express-validator');
 
 const validateReg=[
     body('name')
-    .notEmpty().withMessage('please provide your name')
     .trim().escape(),
     
     body('email')

@@ -1,27 +1,27 @@
-const application=require('../apiSchemas/applicationSchema.js');
+const {applications}=require('../apiSchemas/applicationSchema.js');
 
 const applyJob=async(req,res)=>{
 
+    const {jobId}=req.params;
+    console.log(jobId)
     try{
     const user=req.user;
     if(user.role !== "jobseeker")return res.status(400).json({message:"only job seekers can apply to jobs"});
-    const {jobId,resume,coverLetter}=req.body;
   
-    const alreadyApplied=await application.findOne({applicant:user.id});
+    const alreadyApplied=await applications.findOne({applicant:user.id});
     if (alreadyApplied)return res.status(400).json({message:"you are already applied to this job"});
 
-    const applied=await application.create({
+    const applied=await applications.create({
         applicant:user.id,
         job:jobId,
-        resume,
-        coverLetter        
+        cv:user.cv        
     })
-    if(applied)res.status(200).json({message:"applied successfully"});
+    if(applied)res.status(200).json({success:true,message:"applied successfully"});
 
     }
     catch(err){
         console.log(err.message);
-        res.status(500).json({message:"something went wrong please try again later"})
+        res.status(500).json({success:false,message:"something went wrong please try again later"})
     }
     
                 
