@@ -2,9 +2,9 @@ const mongoose=require('mongoose');
 
 const jobSchema=new mongoose.Schema({
     title:{type:String, required:true},
-    company:{type:String,required:true},
     location:String,
     salary:Number,
+    type:String,
     category:String,
     description:{type:String},
     dueDate:{type:Date},

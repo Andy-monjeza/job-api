@@ -1,0 +1,67 @@
+/* 1. The Toggle Button (Hidden on Desktop) */
+.menu-toggle {
+    display: none;
+    position: fixed;
+    top: 0.8em;
+    left: 1em;
+    z-index: 1100; /* Higher than sidebar */
+    font-weight: 700;
+    background: transparent;
+    color: rgb(12, 77, 197);
+    border: none;
+    padding: 20px;
+    border-radius: 13px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+/* 2. The Overlay (Darkens the background) */
+.sidebar-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+}
+
+/* 3. Mobile Media Query [2026-02-25] */
+@media screen and (max-width: 1024px) {
+    .menu-toggle {
+        display: block;
+    }
+
+    .sidebar-header{
+        margin-left: 40%;
+    }
+
+    .sidebar {
+        position: fixed;
+        left: 0;
+        top: 0;
+        height: 100vh;
+        width: 280px;
+        z-index: 1000;
+        transform: translateX(-100%); /* Hide off-screen */
+        transition: transform 0.3s ease-in-out;
+        box-shadow: 10px 0 15px rgba(0,0,0,0.1);
+    }
+
+    /* When the sidebar is open */
+    .sidebar.active {
+        transform: translateX(0);
+    }
+
+    .sidebar.active + .sidebar-overlay {
+        display: block;
+    }
+
+    /* Ensure content takes full width on mobile */
+    .content-bar {
+        margin-left: 0;
+        width: 100%;
+        padding-top: 70px; /* Space for the toggle button */
+    }
+}

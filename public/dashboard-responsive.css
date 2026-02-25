@@ -1,0 +1,67 @@
+/* Dashboard Responsive Fixes */
+
+@media screen and (max-width: 1024px) {
+    .bottom-shell {
+        flex-direction: column; /* Stack the Chart and Summary */
+        height: auto;
+        padding: 1em;
+    }
+
+    .left-side, .right-side {
+        width: 100% !important; /* Force full width on tablet/mobile */
+    }
+}
+
+@media screen and (max-width: 768px) {
+  
+    .header-bar {
+        align-items: center;
+        gap: 1.5em;
+        padding: 1.5em;
+    }
+
+    .header-right-side {
+        width: fit-content;
+        justify-content: space-between;
+        gap: 10px;
+    }
+
+    .quick-action {
+        display: flex;
+        flex-direction: row;
+        font-size: 11px;
+        justify-content: center;
+    }
+
+    .stats {
+        grid-template-columns: 1fr 1fr; /* 2x2 Grid on mobile */
+        gap: 12px;
+        padding: 10px;
+    }
+
+    .stat-box {
+        max-width: none;
+        padding:6px;
+    
+    }
+
+    .count {
+        font-size: 0.8rem;
+    }
+
+    
+    .highlights {
+        grid-template-columns: 0.5fr;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .stats {
+        grid-template-columns: 1fr;
+    }
+    
+    .header-left-side {
+        padding: 0;
+        align-items: flex-start;
+    }
+}

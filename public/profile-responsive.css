@@ -1,0 +1,62 @@
+@media (max-width: 768px) {
+
+    .cover-photo {
+        height: 160px;
+    }
+    .nameProfile {
+        
+        align-items: center;
+        gap: 1em;
+    }
+
+    .profile-picture {
+        height: 150px;
+        width: 150px;
+    }
+
+    .Username {
+        font-size: 1.4rem;
+    }
+
+    .skillset {
+        font-size: 1rem;
+    }
+
+    .user-details-row {
+        flex-wrap: wrap;
+        gap: 10px;
+        font-size: 0.85rem;
+    }
+
+    .btn-profile-update {
+        padding: 0.7em 2em;
+        font-size: 0.9rem;
+    }
+
+}
+
+@media (max-width: 480px) {
+
+    .nameProfile {
+        flex-direction:flex-start;
+        align-items: center;
+        gap: 1em;
+    }
+
+    .profile-picture {
+        height: 95px;
+        width: 95px;
+    }
+
+    .cover-photo {
+        height: 130px;
+    }
+
+    .contact-info {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+        padding: 20px;
+    }
+
+}

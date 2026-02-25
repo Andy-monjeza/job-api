@@ -1,5 +1,3 @@
-
-
 *{
     margin: 0;
     padding: 0;
@@ -8,27 +6,31 @@
 .content{
     display: flex;
     justify-content: space-between;
-    height: 100%;
+    gap: 20px;
     width: 100%;
 }
+
 .content-left-side{
     width: 63%;
 }
+
 .content-right-side{
-    height: 100%;
     width: 36%;
-    background-color:  rgb(234, 236, 236);
+    background-color: rgb(234, 236, 236);
     border-radius: 13px;
+    padding: 20px;
+    overflow: visible;
 }
+
 .credentials {
     background-color: rgb(234, 236, 236);
     border-radius: 13px; 
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     position: relative;
-    width:100% ;
+    width:100%;
 }
+
 .cover-photo {
     width: 100%;
     height: 200px; 
@@ -38,10 +40,9 @@
     background-repeat: no-repeat;
     border-radius: 13px 13px 0 0; 
 }
-.cover-img{
-    object-fit: cover;
-   
-}
+
+/* PROFILE IMAGE */
+
 .profile-picture{
     height: 150px;
     width: 150px;
@@ -51,14 +52,12 @@
     cursor: pointer;
     transition: 0.5s;
 }
+
 .profile-picture:hover{
   transform: scale(1.05);
 }
-.Username{
- font-size: 1.6rem;
- color: black;
- font-weight: 600;
-}
+
+/* NAME SECTION */
 
 .nameProfile {
     display: flex;
@@ -69,31 +68,13 @@
 }
 
 .pfp-container {
-    flex-shrink: 1                                              Z;
-}
-
-.top-row {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    margin-bottom: 4px;
+    flex-shrink: 1;
 }
 
 .Username {
     font-size: 1.8rem;
     font-weight: 700;
     color: #1a1a1a;
-    font-family: 'Inter', sans-serif;
-}
-
-.badge {
-    background-color: #dcfce7; 
-    color: #166534;
-    font-size: 0.75rem;
-    font-weight: 600;
-    padding: 4px 12px;
-    border-radius: 20px;
-    border: 1px solid #bbf7d0;
 }
 
 .skillset {
@@ -108,6 +89,7 @@
     margin: 12px 0;
     color: #475569;
     font-size: 0.9rem;
+    flex-wrap: wrap;
 }
 
 .detail-item {
@@ -116,33 +98,11 @@
     gap: 6px;
 }
 
-.detail-item i {
-    color: #1e293b;
-}
-
-.mini-tags {
-    display: flex;
-    gap: 8px;
-    margin-top: 10px;
-}
-
-.mini-tag {
-    background: rgba(255, 255, 255, 0.4);
-    padding: 3px 10px;
-    border-radius: 6px;
-    font-size: 0.75rem;
-    font-weight: 600;
-    color: #1e293b;
-    border: 1px solid rgba(0,0,0,0.05);
-}
 
 .button-group {
     display: flex;
-    flex-direction: row; 
     gap: 0.5rem;
-    align-items: stretch; 
     width: fit-content; 
-    margin-top: .5em;
     padding: 1em;
 }
 
@@ -162,63 +122,28 @@
     white-space: nowrap;
 }
 
-.share-profile, .public-view {
-    flex: 1; 
-    padding: 0.8em;
-    border-radius: 10px;
-    border: none;
-    font-weight: 600;
-    font-size: 0.85rem; 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.4em;
-    cursor: pointer;
-    transition: 0.3s;
-    white-space: nowrap;
+.btn-profile-update:hover {
+    background-color: #093891;
 }
+
 .share-profile{
     position: absolute;
     right: 1em;
     top: 1em;
     background-color: transparent;
     color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 15px;
 }
+
 .share-profile:hover{
     background-color: #a6a9ac;
+    border-radius: 13px;
 }
 
-.public-view {
-    background-color: #e9ecef;
-    color: #495057;
-}
-
-
-.btn-profile-update:hover {
-    background-color: #093891;
-}
-
-.public-view:hover {
-    background-color: #dee2e6;
-}
-
-
-.bottom-section-container{
-    display: flex;
-    height: 100%;
-    width: 100%;
-    margin-top: 1em;
-}
-.bottom-left{
-    height: 100%;
-    width: 50%;
-}
-.bottom-right{
-    height: 100%;
-    width: 100%;
-}
 .contact-info {
-    height: 28%;
     width: 100%;
     background-color: rgb(234, 236, 236);
     border-radius: 13px;
@@ -226,11 +151,9 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 30px;
-    box-sizing: border-box;
+    padding: 20px 30px;
 }
 
-/* Contact Details Styling */
 .contact-details {
     display: flex;
     flex-direction: column;
@@ -245,13 +168,6 @@
     font-size: 0.95rem;
 }
 
-.info-item i {
-    color: grey; /* Matches your primary button color */
-    width: 20px;
-    text-align: center;
-}
-
-/* Social Links Styling */
 .social-links {
     display: flex;
     gap: 15px;
@@ -261,14 +177,13 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 30px;
-    height: 30px;
+    width: 34px;
+    height: 34px;
     background-color: #fff;
     color: #333;
     border-radius: 50%;
     text-decoration: none;
     transition: all 0.3s ease;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
 }
 
 .social-icon:hover {
@@ -277,25 +192,17 @@
     transform: translateY(-3px);
 }
 
-.social-icon i {
-    font-size: 1.2rem;
-}
-
-
-
-/* Ensure the parent matches your previous height/width */
-.content-right-side {
-    padding: 20px;
-    box-sizing: border-box;
-    overflow-y: auto; /* Adds a scrollbar if you add many jobs */
-}
+/* =====================
+   JOB SECTION
+===================== */
 
 .right-section-title {
     font-weight: 700;
     font-size: 1.1rem;
-    color: #1e293b;
+    color: #050c18;
     margin-bottom: 20px;
 }
+
 .job-card-header{
     display: flex;
     gap: 1em;
@@ -312,7 +219,6 @@
     width: 100%;
     border-radius: 12px;
     padding: 16px;
-    box-sizing: border-box;
     display: flex;
     flex-direction: column;
     gap: 12px;
@@ -330,34 +236,22 @@
     height: 44px;
     border-radius: 8px;
     object-fit: cover;
-    border: 1px solid #f1f5f9;
 }
 
 .job-main-info {
     display: flex;
     flex-direction: column;
-    flex: 1;
-    margin-left: 12px;
 }
 
 .job-role-title {
     font-size: 0.95rem;
     font-weight: 700;
-    color: #0f172a;
+    color: black;
 }
 
 .company-meta {
     font-size: 0.8rem;
     color: #64748b;
-}
-
-.match-score {
-    background: #f0fdf4;
-    color: #16a34a;
-    font-size: 0.7rem;
-    font-weight: 700;
-    padding: 4px 10px;
-    border-radius: 20px;
 }
 
 .job-details-text {
@@ -379,14 +273,11 @@
 
 .job-tags span {
     background: #f8fafc;
-    color: #64748b;
     font-size: 0.7rem;
     padding: 4px 10px;
     border-radius: 6px;
-    border: 1px solid #e2e8f0;
 }
 
-/* Updated Detailed View Button */
 .detail-view-btn {
     background: transparent;
     color:  #0f4fc5;
@@ -396,10 +287,75 @@
     font-size: 0.8rem;
     font-weight: 600;
     cursor: pointer;
-    transition: all 0.2s;
 }
 
 .detail-view-btn:hover {
     background:  #0f4fc5;
     color: white;
+}
+
+/* =====================
+   RESPONSIVE
+===================== */
+
+/* TABLET */
+@media (max-width: 992px) {
+
+    .content{
+        flex-direction: column;
+    }
+
+    .content-left-side,
+    .content-right-side{
+        width: 100%;
+    }
+
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+
+    .cover-photo{
+        height: 160px;
+    }
+
+    .profile-picture{
+        width: 110px;
+        height: 110px;
+    }
+
+    .Username{
+        font-size: 1.4rem;
+    }
+
+    .skillset{
+        font-size: 1rem;
+    }
+
+}
+
+/* SMALL PHONES */
+@media (max-width: 480px) {
+
+    .nameProfile{
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1em;
+    }
+
+    .profile-picture{
+        width: 95px;
+        height: 95px;
+    }
+
+    .cover-photo{
+        height: 130px;
+    }
+
+    .contact-info{
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
 }

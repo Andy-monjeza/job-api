@@ -1,0 +1,326 @@
+/* Layout Container */
+.job-manager-container {
+    padding: 2em 3em;
+    background: #f9fafb; 
+    overflow-y: auto;
+    height: 100%;
+    border-radius: 13px;
+}
+
+/* Header Section */
+.job-board-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.page-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: #111827;
+}
+
+.btn-new-job {
+    background: #064be0;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.btn-new-job:hover {
+    background: #2359a3;
+}
+
+/* Search & Filter Bar */
+.table-controls {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 20px;
+    align-items: stretch;
+}
+
+.search-container {
+    position: relative;
+    flex: 3;
+}
+
+.search-icon {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #9ca3af;
+}
+
+#jobSearch, .filter-select {
+    height: 42px;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    background: white;
+    font-size: 14px;
+    outline: none;
+}
+
+.filter-select {
+    flex: 1;
+    min-width: 150px; 
+    padding: 0 16px; 
+    color: #4b5563;
+    cursor: pointer;
+}
+
+/* Table Section */
+.table-wrapper {
+    background: white;
+    border-radius: 12px;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    overflow-x: auto; 
+    min-height: 400px;
+    -webkit-overflow-scrolling: touch;
+}
+
+.job-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.job-table th {
+    background: #f9fafb;
+    text-align: left;
+    padding: 16px 24px;
+    color: #6b7280;
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.025em;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.job-table td {
+    padding: 20px 24px;
+    border-bottom: 1px solid #f3f4f6;
+    vertical-align: middle;
+}
+
+#jobTableBody tr {
+    transition: opacity 0.2s ease;
+}
+
+/* Cell & Typography Styles */
+.pos-cell { display: flex; flex-direction: column; }
+.pos-name { font-weight: 600; color: #111827; font-size: 15px; }
+.pos-sub { font-size: 13px; color: #6b7280; margin-top: 2px; }
+.category-text { color: #4b5563; font-size: 14px; }
+
+.loc-cell, .date-cell {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #6b7280;
+    font-size: 14px;
+}
+
+.text-center { text-align: center; color: #111827; }
+
+/* Actions */
+.dots-btn {
+    background: none;
+    border: none;
+    color: #9ca3af;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 6px;
+    transition: all 0.2s;
+}
+
+.dots-btn:hover {
+    background: #f3f4f6;
+    color: #111827;
+}
+
+/* Modal System */
+.modal {
+    display: none; 
+    position: fixed;
+    z-index: 1000;
+    left: 0; top: 0; width: 100%; height: 100%;
+    background-color: rgba(0,0,0,0.5);
+}
+
+.modal-content {
+    background-color: white;
+    margin: 5% auto;
+    padding: 30px;
+    width: 90%;
+    max-width: 600px;
+    border-radius: 12px;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #f3f4f6;
+    padding-bottom: 15px;
+}
+
+.modal-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: #111827;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    color: #9ca3af;
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 6px;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.close-btn:hover {
+    background-color: #f3f4f6;
+    color: #111827;
+}
+
+/* Form Styling */
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end; 
+}
+
+.field-label {
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    color: #4b5563;
+    margin-bottom: 10px;
+    margin-left: 2px;
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+.btn-submit-job {
+    background: #111827;
+    color: white;
+    width: 100%;
+    padding: 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 1em;
+    font-weight: 600;
+}
+
+/* Global / Utility */
+::-webkit-scrollbar {
+    display: none;
+}
+
+/* Responsive Styles */
+@media screen and (max-width: 768px) {
+    /* Layout & Grid Adjustments */
+    .job-manager-container {
+        padding: 1em;
+    }
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* Mobile-Specific Stacking (The "Card" View) */
+    .job-table thead {
+        display: none;
+    }
+
+    .job-table, .job-table tbody, .job-table tr, .job-table td {
+        display: block;
+        width: 100%;
+    }
+
+    .job-table tr {
+        margin-bottom: 1.5rem;
+        background: white;
+        border-radius: 12px;
+        border: 1px solid #e5e7eb;
+        padding: 12px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+    }
+
+    .job-table td {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 8px;
+        border-bottom: 1px solid #f3f4f6;
+        text-align: right;
+    }
+
+    /* Pseudo-labels using data-label attribute */
+    .job-table td::before {
+        content: attr(data-label);
+        font-weight: 700;
+        color: #374151;
+        font-size: 12px;
+        text-transform: uppercase;
+        text-align: left;
+        flex: 1;
+    }
+
+    /* Card Header (Job Title Cell) */
+    .job-table td:first-child {
+        background: #f9fafb;
+        margin: -12px -12px 10px -12px;
+        padding: 16px;
+        border-radius: 12px 12px 0 0;
+        display: block;
+        text-align: left;
+        border-bottom: 2px solid #e5e7eb;
+    }
+
+    .job-table td:first-child::before {
+        display: none;
+    }
+
+    .pos-name {
+        font-size: 17px;
+        display: block;
+    }
+
+    .pos-cell {
+        align-items: flex-start;
+    }
+
+    .job-table td:last-child {
+        border-bottom: none;
+    }
+}

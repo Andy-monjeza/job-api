@@ -49,6 +49,7 @@ const jobSeekerSchema = new mongoose.Schema({
     type:[String],
     defult:[]
   },
+  experience:{type:String},
   location: String,
   profilePicture: {
     url: {
@@ -79,7 +80,6 @@ const jobSeekerSchema = new mongoose.Schema({
     startDate: Date,
     endDate: Date
   }],
-  skills: [String],
   resumeUrl: String,
   CVurl:String,
   portfolioUrl: String,
