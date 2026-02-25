@@ -1,7 +1,7 @@
 const jobseeker = document.querySelector('.as-jobseeker');
 const recruiter = document.querySelector('.as-company');
 const Name = document.querySelector('.name');
-const nameLabel = document.querySelector('.name-label'); // Ensure you have this class in your HTML
+const nameLabel = document.querySelector('.name-label'); 
 const email = document.querySelector('.email');
 const password = document.querySelector('.password');
 const sign_up = document.querySelector('.sign-up-button');
@@ -57,11 +57,11 @@ const sendRequest = async () => {
     };
 
     try {
-        // 3. UI Loading State
+   
         sign_up.innerHTML = `<span class="spinner"></span>`;
         sign_up.disabled = true;
 
-        const response = await fetch('http://localhost:5000/api/auth/register', {
+        const response = await fetch('/api/auth/register', {
             method: 'POST',
             headers: { 'Content-type': 'application/json' },
             body: JSON.stringify(sign_up_data)
@@ -73,7 +73,7 @@ const sendRequest = async () => {
             localStorage.setItem('token', data.token);
             showMessage(data.message || "Registration Successful!", "msg-success");
             
-            // 4. Redirect after success
+           
             setTimeout(() => {
                 window.location.replace("index.html");
             }, 1500);
@@ -89,10 +89,10 @@ const sendRequest = async () => {
     }
 };
 
-// --- Helper Functions ---
+
 function showMessage(text, typeClass) {
     message_box.style.display = "block";
-    message_box.className = `response-message ${typeClass}`; // Resets old classes
+    message_box.className = `response-message ${typeClass}`;
     message_box.innerHTML = text;
 }
 
@@ -101,8 +101,8 @@ function resetButton() {
     sign_up.disabled = false;
 }
 
-// --- Event Listener ---
+
 sign_up.addEventListener('click', (e) => {
-    e.preventDefault(); // Fixed: Passing 'e' ensures preventDefault works
+    e.preventDefault(); 
     sendRequest();
 });

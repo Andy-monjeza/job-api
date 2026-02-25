@@ -2,7 +2,7 @@ const express= require('express');
 const {connectDB}=require('./controllers/connectDb.js')
 const app=express();
 app.use(express.json())
-
+const port = process.env.PORT;
 const {limit, limitLogin}=require('./middleware/express-rate-limit.js')
 const auth = require('./routes/registerLogin.js')
 const {logger}=require('./controllers/activityLogger.js');
@@ -38,7 +38,7 @@ app.use('/api/saved-jobs',savedJobsRoute);
 app.use('/api/applications',myAPplicationsRoute);
 app.use('/api/market-demand',getMarketDemandStatsRoute);
   
-app.listen(5000,()=>{
+app.listen(port,()=>{
     connectDB();
     console.log('app listening on port 5000')
 })

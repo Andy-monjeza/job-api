@@ -4,7 +4,7 @@ const fetchApplications= async()=>{
     if(!sessionToken)return console.log("token not found please login again!");
 
     try{
-      const response = await fetch('http://localhost:5000/api/applications/get-my-applications', {
+      const response = await fetch('/applications/get-my-applications', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',

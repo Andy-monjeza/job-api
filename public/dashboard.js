@@ -22,7 +22,7 @@ export const updateApplicationsCount=async()=>{
 const fetchUserPrefCategory=async()=>{
     try{
        const sessionToken=localStorage.getItem('token');
-        const response=await fetch('http://localhost:5000/api/user/me',{
+        const response=await fetch('/api/user/me',{
             headers:{'Authorization':`Bearer ${sessionToken}`}
         })
         const profile= await response.json();

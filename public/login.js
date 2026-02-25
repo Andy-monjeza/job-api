@@ -14,7 +14,7 @@ const sendRequest=async()=>{
     try{
         submitBtn.disabled=true;
         submitBtn.innerHTML=`<span class="spinner"></span>`
-        const response=await fetch('http://localhost:5000/api/auth/login',{
+        const response=await fetch('/api/auth/login',{
             method:'POST',
             headers:{
                 'content-type':'application/json'

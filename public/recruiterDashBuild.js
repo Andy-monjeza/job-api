@@ -2,7 +2,7 @@ const contentSection=document.querySelector('.content-bar');
 
 const getJobManager = async () => {
     try {
-        const response = await fetch('http://localhost:5000/api/assets/job-manager');
+        const response = await fetch('/api/assets/job-manager');
         
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
@@ -77,7 +77,7 @@ const fetchRecruiterJobs = async () => {
     const token = localStorage.getItem('token');
     
     try {
-        const response = await fetch('http://localhost:5000/api/all-jobs/my-jobs', {
+        const response = await fetch('/api/all-jobs/my-jobs', {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${token}`, 
@@ -106,19 +106,14 @@ const handleJobSubmission = async (form) => {
         category: formData.get('category'),
         description: formData.get('description'),
         dueDate: formData.get('dueDate'),
-        
-        // These fields are strings in the form, 
-        // but your schema can handle them as strings or you can split them into arrays.
         requirements: formData.get('requirements'),
         responsibilities: formData.get('responsibilities'),
         benefits: formData.get('benefits'),
-        
-        // Converting the skills string into an array
         skills: formData.get('skills').split(',').map(s => s.trim()).filter(s => s !== "")
     };
 
     try {
-        const response = await fetch('http://localhost:5000/api/all-jobs/create', {
+        const response = await fetch('/api/all-jobs/create', {
             method: 'POST',
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem('token')}`,
@@ -130,7 +125,7 @@ const handleJobSubmission = async (form) => {
         if (response.ok) {
             alert("Job Posted Successfully!");
             window.closeJobModal();
-            buildJobManagerTab(); // Refresh the table
+            buildJobManagerTab(); 
         }
     } catch (err) {
         console.error("Post Error:", err);
@@ -182,15 +177,10 @@ window.filterJobs = () => {
     const rows = document.querySelectorAll('#jobTableBody tr');
 
     rows.forEach(row => {
-        // Grab the text content to compare
         const title = row.querySelector('.pos-name').textContent.toLowerCase();
         const category = row.querySelector('.category-text').textContent;
-
-        // Check if row matches both filters
         const matchesSearch = title.includes(searchInput);
         const matchesCategory = (categorySelect === 'all') || (category === categorySelect);
-
-        // Show or hide based on results
         row.style.display = (matchesSearch && matchesCategory) ? "" : "none";
     });
 };

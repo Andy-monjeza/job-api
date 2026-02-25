@@ -121,7 +121,7 @@ const fetchData = async (url, method, contType) => {
 
 dashBtn.addEventListener('click', async () => {
 
-         const data = await fetchData('http://localhost:5000/api/assets/dashboard', 'GET', 'text/html');
+         const data = await fetchData('/api/assets/dashboard', 'GET', 'text/html');
                const applicationCount=await updateApplicationsCount();
             if (data) {
                 contentSection.innerHTML = data;
@@ -148,7 +148,7 @@ dashBtn.addEventListener('click', async () => {
 const getProfile=async()=>{
      console.log('Fetching profile...');
 
-        const data = await fetchData('http://localhost:5000/api/assets/profile', 'GET', 'text/html');
+        const data = await fetchData('/api/assets/profile', 'GET', 'text/html');
         
         if (data) {
             contentSection.innerHTML = data;
@@ -161,7 +161,7 @@ const getProfile=async()=>{
 const getSavedJobs=async()=>{
  console.log('Fetching saved jobs...');
 
-        const data = await fetchData('http://localhost:5000/api/assets/saved-jobs', 'GET', 'text/html');
+        const data = await fetchData('/api/assets/saved-jobs', 'GET', 'text/html');
         
         if (data) {
             contentSection.innerHTML = data;
@@ -175,7 +175,7 @@ const getSavedJobs=async()=>{
 const getMyApplications=async()=>{
    console.log('Fetching My applications...');
 
-        const data = await fetchData('http://localhost:5000/api/assets/my-applications', 'GET', 'text/html');
+        const data = await fetchData('/api/assets/my-applications', 'GET', 'text/html');
         
         if (data) {
             contentSection.innerHTML = data;

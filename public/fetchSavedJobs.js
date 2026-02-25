@@ -5,10 +5,10 @@ export const buildSavedJobsTab = async () => {
     try {
    
         const [savedRes, appRes] = await Promise.all([
-            fetch('http://localhost:5000/api/saved-jobs/my-saved-jobs', {
+            fetch('/api/saved-jobs/my-saved-jobs', {
                 headers: { 'Authorization': `Bearer ${sessionToken}` }
             }),
-            fetch('http://localhost:5000/api/applications/get-my-applications', {
+            fetch('/api/applications/get-my-applications', {
                 headers: { 'Authorization': `Bearer ${sessionToken}` }
             })
         ]);

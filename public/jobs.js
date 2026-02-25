@@ -5,7 +5,7 @@ const jobList=document.querySelector('.job-list');
 
 const fetchJobsFeed = async (pageNumber = 1) => {
     try {
-        const response = await fetch(`http://localhost:5000/api/filtered-jobs/job-feed?page=${pageNumber}&limit=10`);
+        const response = await fetch(`/api/filtered-jobs/job-feed?page=${pageNumber}&limit=10`);
         const data = await response.json();
         if (data.success) {
          return data;
@@ -23,7 +23,7 @@ const applyForJob = async (jobId) => {
     }
 
     try {
-        const response = await fetch(`http://localhost:5000/api/job-application/apply/${jobId}`, {
+        const response = await fetch(`/api/job-application/apply/${jobId}`, {
             method: 'POST',
             headers: {
                 'Authorization': `Bearer ${token}`,
@@ -76,7 +76,7 @@ const saveJob = async (jobId) => {
 const fetchSelectedJob = async (jobId) => {
   try {
     const response = await fetch(
-      `http://localhost:5000/api/filtered-jobs/single-job?jobId=${jobId}`
+      `/api/filtered-jobs/single-job?jobId=${jobId}`
     );
 
     if (!response.ok) {
@@ -217,16 +217,6 @@ const renderJobPreview = (job) => {
   jobPreviewContainer.innerHTML = html;
 }
 
-/*
-function closePreview() {
-    document.body.classList.remove('preview-mode');
-    
-    // Smoothly remove the active highlight from the list after the slide
-    setTimeout(() => {
-        document.querySelectorAll('.mini-card').forEach(c => c.classList.remove('active'));
-    }, 300); 
-}
-*/
 document.addEventListener("DOMContentLoaded", async () => {
     getCurrentUser();
     attachCredentials();
@@ -282,7 +272,7 @@ jobPreviewContainer.addEventListener("click", async (e) => {
 
 });*/
 
-// 1. The Delegation Listener for Apply/Save
+
 jobPreviewContainer.addEventListener("click", async (e) => {
     // Check for Apply Button
     const applyBtn = e.target.closest('.btn-primary');
