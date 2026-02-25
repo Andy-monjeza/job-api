@@ -48,3 +48,5 @@ app.listen(port,()=>{
    
     console.log('app listening on port 5000')
 })
+
+module.exports=app;
