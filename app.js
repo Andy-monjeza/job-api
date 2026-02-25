@@ -23,7 +23,7 @@ app.use(express.static('public'))
 app.use(limit);
 app.use(logger);
 app.use(express.json());
-
+ connectDB();
 
 app.get('/', (req, res) => {
     res.sendFile(__dirname + '/public/index.html');
@@ -44,7 +44,6 @@ app.use('/api/applications',myAPplicationsRoute);
 app.use('/api/market-demand',getMarketDemandStatsRoute);
 
 
- connectDB();
 app.listen(port,()=>{
    
     console.log('app listening on port 5000')
