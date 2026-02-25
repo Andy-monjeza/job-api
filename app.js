@@ -20,7 +20,8 @@ const myAPplicationsRoute=require('./routes/myApplicationsRoute.js')
 const getMarketDemandStatsRoute=require('./routes/marketDemandStatsRoute.js');
 
 app.use(express.static('public'))
-app.use(limit);
+app.use('/api',limit);
+app.set('trust proxy', 1);
 app.use(logger);
 app.use(express.json());
  connectDB();
