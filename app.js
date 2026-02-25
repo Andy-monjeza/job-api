@@ -2,7 +2,7 @@ const express= require('express');
 const {connectDB}=require('./controllers/connectDb.js')
 const app=express();
 app.use(express.json())
-const port = process.env.PORT;
+const port = process.env.port;
 const {limit, limitLogin}=require('./middleware/express-rate-limit.js')
 const auth = require('./routes/registerLogin.js')
 const {logger}=require('./controllers/activityLogger.js');
