@@ -45,7 +45,7 @@ app.use('/api/applications',myAPplicationsRoute);
 app.use('/api/market-demand',getMarketDemandStatsRoute);
 
 
-app.listen(port,()=>{
+app.listen(5000,()=>{
    
     console.log('app listening on port 5000')
 })

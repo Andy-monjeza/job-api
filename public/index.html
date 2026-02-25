@@ -1,269 +1,249 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link rel="stylesheet" href="index.css">
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>InfiniteJobs</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="index.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
 </head>
 <body>
-  
+  <!-- HEADER -->
   <header class="header">
     <div class="logo-section">
-          <svg width="32" height="32" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <defs>
-                    <linearGradient id="logo-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stop-color="#8B5CF6" />
-                    <stop offset="100%" stop-color="#D946EF" />
-                    </linearGradient>
-                </defs>
-                
-                <path d="M30 40C20 40 20 60 30 60C40 60 60 40 70 40C80 40 80 60 70 60C60 60 40 40 30 40Z" 
-                        stroke="url(#logo-grad)" 
-                        stroke-width="10" 
-                        stroke-linecap="round" 
-                        stroke-linejoin="round" />
-                        
-                <path d="M40 30C40 24 60 24 60 30" 
-                        stroke="white" 
-                        stroke-width="6" 
-                        stroke-linecap="round" 
-                        opacity="0.8" />
-          </svg>
-       <p class="logo-word">InfiniteJobs</p>
+      <svg width="32" height="32" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="logo-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#8B5CF6"/>
+            <stop offset="100%" stop-color="#D946EF"/>
+          </linearGradient>
+        </defs>
+        <path d="M30 40C20 40 20 60 30 60C40 60 60 40 70 40C80 40 80 60 70 60C60 60 40 40 30 40Z" stroke="url(#logo-grad)" stroke-width="10" stroke-linecap="round"/>
+        <path d="M40 30C40 24 60 24 60 30" stroke="white" stroke-width="6" stroke-linecap="round" opacity="0.8"/>
+      </svg>
+      <p class="logo-word">InfiniteJobs</p>
     </div>
 
-    <div class="nav-auth">
-        <a href="jobs.html" class="home-jobs">Jobs</a>
-        <a href="assets.html" class="home-dashboard">Dashboard</a>
-        
-        <div class="auth-options">
+    <nav class="nav-auth">
+      <a href="jobs.html" class="home-jobs">Jobs</a>
+      <a href="assets.html" class="home-dashboard">Dashboard</a>
+      <div class="auth-options">
         <a href="login.html" class="login-btn">Sign In</a>
         <a href="register.html" class="signup-btn">Sign Up</a>
-        </div>
-        
-    </div>
-  
+      </div>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
   </header>
 
-
-  <main class="hero">
-  <div class="hero-content">
-    <h1>Find the work that <br><span class="gradient-text">actually matters.</span></h1>
-    <p class="hero-sub-header">Discover career opportunities across Malawi tailored to your unique skills using our intelligent matching system.</p>
-    
-    <div class="search-container">
-      <div class="search-box">
-        <span class="search-icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-        </span>
-        <input type="text" placeholder="Try 'Graphic Designer in Blantyre'...">
-        <button class="search-btn">Find Jobs</button>
-      </div>
-      <div class="trending-tags">
-        <span>Trending:</span>
-        <a href="#">Software</a>
-        <a href="#">Nursing</a>
-        <a href="#">Accounting</a>
-      </div>
-    </div>
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="jobs.html">Jobs</a>
+    <a href="assets.html">Dashboard</a>
+    <a href="login.html">Sign In</a>
+    <a href="register.html" class="mobile-signup signup-btn">Sign Up</a>
   </div>
 
- <div class="hero-visual">
-    <div class="svg-shape-container">
-        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-            <path fill="#8B5CF6" fill-opacity="0.1" d="M44.7,-76.4C58.1,-69.2,69.2,-57.1,76.5,-43.3C83.8,-29.5,87.3,-14.8,86.5,-0.5C85.6,13.8,80.4,27.5,72.5,39.9C64.6,52.3,53.9,63.3,41.2,71.5C28.5,79.7,14.3,85,-0.7,86.2C-15.7,87.4,-31.3,84.4,-44.7,76.5C-58.1,68.6,-69.2,55.8,-76.7,41.7C-84.2,27.5,-88.1,12,-87.3,-3.1C-86.5,-18.2,-81.1,-32.8,-72,-45.1C-62.9,-57.4,-50.1,-67.4,-36.3,-74.4C-22.5,-81.4,-7.7,-85.4,7,-86.6C21.7,-87.8,31.4,-83.6,44.7,-76.4Z" transform="translate(100 100)" />
-        </svg>
+  <!-- HERO -->
+  <main class="hero">
+    <div class="hero-content">
+      <h1>Find the work that <br><span class="gradient-text">actually matters.</span></h1>
+      <p class="hero-sub-header">Discover career opportunities across Malawi tailored to your unique skills using our intelligent matching system.</p>
+
+      <div class="search-container">
+        <div class="search-box">
+          <span class="search-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          </span>
+          <input type="text" placeholder="Try 'Graphic Designer in Blantyre'...">
+          <button class="search-btn">Find Jobs</button>
+        </div>
+        <div class="trending-tags">
+          <span>Trending:</span>
+          <a href="#">Software</a>
+          <a href="#">Nursing</a>
+          <a href="#">Accounting</a>
+        </div>
+      </div>
     </div>
 
-    <div class="stat-card floating-1">
+    <div class="hero-visual">
+      <div class="svg-shape-container">
+        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+          <path fill="#8B5CF6" fill-opacity="0.1" d="M44.7,-76.4C58.1,-69.2,69.2,-57.1,76.5,-43.3C83.8,-29.5,87.3,-14.8,86.5,-0.5C85.6,13.8,80.4,27.5,72.5,39.9C64.6,52.3,53.9,63.3,41.2,71.5C28.5,79.7,14.3,85,-0.7,86.2C-15.7,87.4,-31.3,84.4,-44.7,76.5C-58.1,68.6,-69.2,55.8,-76.7,41.7C-84.2,27.5,-88.1,12,-87.3,-3.1C-86.5,-18.2,-81.1,-32.8,-72,-45.1C-62.9,-57.4,-50.1,-67.4,-36.3,-74.4C-22.5,-81.4,-7.7,-85.4,7,-86.6C21.7,-87.8,31.4,-83.6,44.7,-76.4Z" transform="translate(100 100)"/>
+        </svg>
+      </div>
+      <div class="stat-card floating-1">
         <div class="icon-circle">✨</div>
         <div class="card-text">
-            <strong>95% AI Match</strong>
-            <small>Backend Developer</small>
+          <strong>95% AI Match</strong>
+          <small>Backend Developer</small>
         </div>
-    </div>
-
-    <div class="stat-card floating-2">
+      </div>
+      <div class="stat-card floating-2">
         <div class="icon-circle">📍</div>
         <div class="card-text">
-            <strong>Active Now</strong>
-            <small>Lilongwe Hub</small>
+          <strong>Active Now</strong>
+          <small>Lilongwe Hub</small>
         </div>
+      </div>
     </div>
-</div>
+  </main>
 
-</main>
-
-<section class="how-it-works">
+  <!-- HOW IT WORKS -->
+  <section class="how-it-works">
     <div class="section-header">
-        <span class="badge">The Process</span>
-        <h2>Your career, <span class="gradient-text">automated.</span></h2>
-        <p>We’ve simplified the Malawian job market into three easy steps.</p>
+      <span class="badge">The Process</span>
+      <h2>Your career, <span class="gradient-text">automated.</span></h2>
+      <p>We've simplified the Malawian job market into three easy steps.</p>
     </div>
-
     <div class="steps-grid">
-        <div class="step-card step-card reveal reveal-delay-1">
-            <div class="step-number">01</div>
-            <div class="step-icon">
-              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#8B5CF6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
-                <circle cx="9" cy="7" r="4"></circle>
-                <polyline points="16 11 18 13 22 9"></polyline>
-              </svg>
-            </div>
-            <h3>Create your Profile</h3>
-            <p>List your skills and experience. Our AI parses your data to build a digital twin of your professional self.</p>
+      <div class="step-card reveal reveal-delay-1">
+        <div class="step-number">01</div>
+        <div class="step-icon">
+          <svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="#8B5CF6" stroke-width="2" stroke-linecap="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><polyline points="16 11 18 13 22 9"/></svg>
         </div>
-
-        <div class="step-card step-card reveal reveal-delay-2">
-            <div class="step-number">02</div>
-            <div class="step-icon">
-            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#8B5CF6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12 2a10 10 0 0 1 10 10c0 5.523-4.477 10-10 10S2 17.523 2 12c0-5.523 4.477-10 10-10z"></path>
-              <path d="M12 16a4 4 0 1 0 0-8 4 4 0 0 0 0 8z"></path>
-              <line x1="12" y1="2" x2="12" y2="4"></line>
-              <line x1="12" y1="20" x2="12" y2="22"></line>
-              <line x1="2" y1="12" x2="4" y2="12"></line>
-              <line x1="20" y1="12" x2="22" y2="12"></line>
-            </svg>
-          </div>
-            <h3>AI Matching</h3>
-            <p>Our algorithm scans thousands of jobs in Malawi to find roles where you have a competitive edge.</p>
+        <h3>Create your Profile</h3>
+        <p>List your skills and experience. Our AI parses your data to build a digital twin of your professional self.</p>
+      </div>
+      <div class="step-card reveal reveal-delay-2">
+        <div class="step-number">02</div>
+        <div class="step-icon">
+          <svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="#8B5CF6" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="4"/><line x1="12" y1="20" x2="12" y2="22"/><line x1="2" y1="12" x2="4" y2="12"/><line x1="20" y1="12" x2="22" y2="12"/></svg>
         </div>
-
-        <div class="step-card step-card reveal reveal-delay-3">
-            <div class="step-number">03</div>
-            <div class="step-icon">
-            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#8B5CF6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="12" cy="12" r="10"></circle>
-              <circle cx="12" cy="12" r="6"></circle>
-              <circle cx="12" cy="12" r="2"></circle>
-            </svg>
-          </div>
-            <h3>Apply with One Click</h3>
-            <p>Get direct access to recruiters. No more guessing—only apply to jobs you’re actually qualified for.</p>
+        <h3>AI Matching</h3>
+        <p>Our algorithm scans thousands of jobs in Malawi to find roles where you have a competitive edge.</p>
+      </div>
+      <div class="step-card reveal reveal-delay-3">
+        <div class="step-number">03</div>
+        <div class="step-icon">
+          <svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="#8B5CF6" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
         </div>
+        <h3>Apply with One Click</h3>
+        <p>Get direct access to recruiters. No more guessing—only apply to jobs you're actually qualified for.</p>
+      </div>
     </div>
-</section>
+  </section>
 
-<section class="dashboard-preview dashboard-preview reveal">
+  <!-- DASHBOARD PREVIEW -->
+  <section class="dashboard-preview reveal">
     <div class="container">
-        <div class="preview-grid">
-            <div class="preview-text">
-                <div class="mini-label">Analytical Edge</div>
-                <h2>Don't just apply. <br><span class="gradient-text">Strategize.</span></h2>
-                <p class="description">Our dashboard isn't just a list; it's a career GPS. We visualize the Malawian job market to show you where your skills are most valuable.</p>
-                
-                <div class="feature-group">
-                    <div class="feature-item">
-                        <div class="f-icon">📈</div>
-                        <div class="f-info">
-                            <strong>Predictive Trends</strong>
-                            <p>See which industries in Malawi are growing before you apply.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="feature-item">
-                        <div class="f-icon">🎯</div>
-                        <div class="f-info">
-                            <strong>Competitor Benchmarking</strong>
-                            <p>Compare your skill set against the average applicant for any role.</p>
-                        </div>
-                    </div>
-                </div>
+      <div class="preview-grid">
+        <div class="preview-text">
+          <div class="mini-label">Analytical Edge</div>
+          <h2>Don't just apply. <br><span class="gradient-text">Strategize.</span></h2>
+          <p class="description">Our dashboard isn't just a list; it's a career GPS. We visualize the Malawian job market to show you where your skills are most valuable.</p>
+          <div class="feature-group">
+            <div class="feature-item">
+              <div class="f-icon">📈</div>
+              <div class="f-info">
+                <strong>Predictive Trends</strong>
+                <p>See which industries in Malawi are growing before you apply.</p>
+              </div>
             </div>
-
-            <div class="preview-visual">
-                <div class="glass-window">
-                    <div class="window-header">
-                        <div class="dots"><span></span><span></span><span></span></div>
-                        <div class="window-title">Market Insights</div>
-                    </div>
-                    <div class="window-body">
-                        <div class="chart-box">
-                            <div class="bar-group">
-                                <div class="bar" style="height: 40%;"></div>
-                                <div class="bar active" style="height: 85%;"></div>
-                                <div class="bar" style="height: 60%;"></div>
-                                <div class="bar" style="height: 35%;"></div>
-                                <div class="bar" style="height: 70%;"></div>
-                            </div>
-                            <div class="chart-labels">
-                                <span>M</span><span>T</span><span>W</span><span>T</span><span>F</span>
-                            </div>
-                        </div>
-                        <div class="floating-stat">
-                            <span class="trend-up">↑ 12.5%</span>
-                            <small>Tech Demand</small>
-                        </div>
-                    </div>
-                </div>
-                <div class="visual-glow"></div>
+            <div class="feature-item">
+              <div class="f-icon">🎯</div>
+              <div class="f-info">
+                <strong>Competitor Benchmarking</strong>
+                <p>Compare your skill set against the average applicant for any role.</p>
+              </div>
             </div>
+          </div>
         </div>
+
+        <div class="preview-visual">
+          <div class="glass-window">
+            <div class="window-header">
+              <div class="dots"><span></span><span></span><span></span></div>
+              <div class="window-title">Market Insights</div>
+            </div>
+            <div class="window-body">
+              <div class="chart-box">
+                <div class="bar-group">
+                  <div class="bar" style="height:40%"></div>
+                  <div class="bar active" style="height:85%"></div>
+                  <div class="bar" style="height:60%"></div>
+                  <div class="bar" style="height:35%"></div>
+                  <div class="bar" style="height:70%"></div>
+                </div>
+                <div class="chart-labels"><span>M</span><span>T</span><span>W</span><span>T</span><span>F</span></div>
+              </div>
+              <div class="floating-stat">
+                <span class="trend-up">↑ 12.5%</span>
+                <small>Tech Demand</small>
+              </div>
+            </div>
+          </div>
+          <div class="visual-glow"></div>
+        </div>
+      </div>
     </div>
-</section>
+  </section>
 
-
-<section class="final-cta">
+  <!-- FINAL CTA -->
+  <section class="final-cta">
     <div class="cta-box">
-        <h2>Ready to start your <span class="white-text">Infinite</span> journey?</h2>
-        <p>Join thousands of Malawians finding better opportunities today.</p>
-        <div class="cta-buttons">
-            <a href="register.html" class="signup-btn">Get Started Now</a>
-            <a href="jobs.html" class="login-btn" style="color:white; border: 1px solid white; padding: 0.6rem 1.2rem; border-radius: 8px;">View Jobs First</a>
-        </div>
+      <h2>Ready to start your <span class="white-text">Infinite</span> journey?</h2>
+      <p>Join thousands of Malawians finding better opportunities today.</p>
+      <div class="cta-buttons">
+        <a href="register.html" class="signup-btn">Get Started Now</a>
+        <a href="jobs.html" class="cta-outline-btn">View Jobs First</a>
+      </div>
     </div>
-</section>
+  </section>
 
-<footer class="footer">
+  <!-- FOOTER -->
+  <footer class="footer">
     <div class="footer-grid">
-        <div class="footer-brand">
-            <p>Infinite<span class="j">Jobs</span></p>
-            <p class="tagline">Empowering Malawi's workforce with AI-driven precision.</p>
-        </div>
-        <div class="footer-links">
-            <h4>Platform</h4>
-            <a href="#">Browse Jobs</a>
-            <a href="#">For Recruiters</a>
-            <a href="#">AI Matching</a>
-        </div>
-        <div class="footer-links">
-            <h4>Support</h4>
-            <a href="#">Help Center</a>
-            <a href="#">Privacy Policy</a>
-            <a href="#">Terms of Use</a>
-        </div>
+      <div class="footer-brand">
+        <p>Infinite<span class="j">Jobs</span></p>
+        <p class="tagline">Empowering Malawi's workforce with AI-driven precision.</p>
+      </div>
+      <div class="footer-links">
+        <h4>Platform</h4>
+        <a href="#">Browse Jobs</a>
+        <a href="#">For Recruiters</a>
+        <a href="#">AI Matching</a>
+      </div>
+      <div class="footer-links">
+        <h4>Support</h4>
+        <a href="#">Help Center</a>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Use</a>
+      </div>
     </div>
     <div class="footer-bottom">
-        <p>&copy; 2026 InfiniteJobs.</p>
+      <p>&copy; 2026 InfiniteJobs.</p>
     </div>
-</footer>
+  </footer>
 
-
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-    const observerOptions = {
-        threshold: 0.15 // Trigger when 15% of the element is visible
-    };
-
+  <script>
+    // Scroll reveal
     const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('active');
-                // Optional: stop observing once it has animated
-                // observer.unobserve(entry.target); 
-            }
-        });
-    }, observerOptions);
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('active'); });
+    }, { threshold: 0.12 });
 
-    // Grab all elements you want to animate
-    const revealElements = document.querySelectorAll('.reveal');
-    revealElements.forEach(el => observer.observe(el));
-});
-</script>
-<script type="module" src="index.js"></script>
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Hamburger toggle
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('open');
+      mobileMenu.classList.toggle('open');
+    });
+
+    // Close on outside click
+    document.addEventListener('click', (e) => {
+      if (!hamburger.contains(e.target) && !mobileMenu.contains(e.target)) {
+        hamburger.classList.remove('open');
+        mobileMenu.classList.remove('open');
+      }
+    });
+  </script>
+</body>
+</html>
 
 </body>
 </html>
