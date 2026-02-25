@@ -43,7 +43,9 @@ app.use('/api/saved-jobs',savedJobsRoute);
 app.use('/api/applications',myAPplicationsRoute);
 app.use('/api/market-demand',getMarketDemandStatsRoute);
 
+
+ connectDB();
 app.listen(port,()=>{
-    connectDB();
+   
     console.log('app listening on port 5000')
 })
