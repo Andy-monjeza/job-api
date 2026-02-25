@@ -24,6 +24,11 @@ app.use(limit);
 app.use(logger);
 app.use(express.json());
 
+
+app.get('/', (req, res) => {
+    res.sendFile(__dirname + '/public/index.html');
+});
+
 app.use('/api/auth',auth);
 app.use('/api/user',profileRoute)
 app.use('/api/users',getUsers)
@@ -37,7 +42,7 @@ app.use('/api/uploads',fileUploadRoute);
 app.use('/api/saved-jobs',savedJobsRoute);
 app.use('/api/applications',myAPplicationsRoute);
 app.use('/api/market-demand',getMarketDemandStatsRoute);
-  
+
 app.listen(port,()=>{
     connectDB();
     console.log('app listening on port 5000')
