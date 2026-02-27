@@ -5,10 +5,7 @@
         <h1 class="page-title">Applications Manager</h1>
     </div>
     <div class="header-right">
-        <button class="btn-new-job" id="createNewJob">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
-            New Job
-        </button>
+        
     </div>
 </div>
 
@@ -38,44 +35,4 @@
      
     </table>
 </div>
-</div>
-
-<div id="jobModal" class="modal">
-    <div class="modal-content">
-        <div class="modal-header">
-            <h2 class="modal-title">Post New Job</h2>
-            <button type="button" class="close-btn" onclick="window.closeJobModal()">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-            </button>
-        </div>
-        <form id="postJobForm">
-            <div class="form-grid">
-                <input type="text" name="title" placeholder="Job Title" required>
-                <input type="text" name="location" placeholder="Location">
-                <input type="number" name="salary" placeholder="Salary ($)">
-                <input type="text" name="category" placeholder="Category" required>
-                
-                <select name="type">
-                    <option value="Full-time">Full-time</option>
-                    <option value="Part-time">Part-time</option>
-                    <option value="Contract">Contract</option>
-                </select>
-
-                <div class="form-group">
-                    <label class="field-label">Due Date:</label>
-                    <input type="date" name="dueDate" required>
-                </div>
-            </div>
-
-            <textarea name="description" placeholder="Short Description" rows="2"></textarea>
-            
-            <textarea name="requirements" placeholder="Requirements (e.g. 3+ years experience - one per line)" rows="3"></textarea>
-            <textarea name="responsibilities" placeholder="Responsibilities (one per line)" rows="3"></textarea>
-            <textarea name="benefits" placeholder="Benefits (e.g. Medical, Remote Work - one per line)" rows="2"></textarea>
-            
-            <input type="text" name="skills" placeholder="Skills Required (comma separated: React, Node, SQL)">
-
-            <button type="submit" class="btn-submit-job">Post Job Listing</button>
-        </form>
-    </div>
 </div>
