@@ -58,7 +58,7 @@ const createJobRow = (job) => {
         <td data-label="Position">
             <div class="pos-cell">
                 <span class="pos-name">${job.title || 'Untitled Position'}</span>
-                <span class="pos-sub">${job.type || 'N/A'} • ${job.salary || 'Negotiable'}</span>
+                <span class="pos-sub">${job.type || 'N/A'}</span>
             </div>
         </td>
         <td data-label="Category">

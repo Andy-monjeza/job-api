@@ -214,7 +214,7 @@
 .user-profile-info { display: flex; align-items: center; gap: 12px; }
 .table-avatar { width: 38px; height: 38px; border-radius: 50%; object-fit: cover; border: 1px solid #e5e7eb; }
 .name-status-stack { display: flex; flex-direction: column; gap: 2px; }
-.applicant-name { font-weight: 600; color: #111827; font-size: 15px; }
+.applicant-name { font-weight: 600; color: #0d0e0f; font-size: 15px; }
 .icon-text { display: flex; align-items: center; gap: 6px; color: #6b7280; font-size: 14px; }
 
 /* Status Badges */
@@ -337,4 +337,72 @@
     }
 
     .user-profile-info { flex-direction: row-reverse; }
+}
+
+@media screen and (max-width: 768px) {
+    /* 1. Hide the table headers on mobile */
+    .job-table thead {
+        display: none;
+    }
+
+    /* 2. Turn rows into individual cards */
+    .job-table, .job-table tbody, .job-table tr, .job-table td {
+        display: block;
+        width: 100%;
+    }
+
+    .job-table tr {
+        background: white;
+        border: 1px solid #e5e7eb;
+        border-radius: 12px;
+        margin-bottom: 1.5rem;
+        padding: 12px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+    }
+
+    /* 3. Style the cells as rows within the card */
+    .job-table td {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 12px 8px;
+        border-bottom: 1px solid #f3f4f6;
+        text-align: right;
+        min-height: 45px;
+    }
+
+    .job-table td:last-child {
+        border-bottom: none;
+    }
+
+    /* 4. The Magic: Insert labels using the data-label attribute */
+    .job-table td::before {
+        content: attr(data-label);
+        font-weight: 700;
+        color: #6b7280;
+        font-size: 11px;
+        text-transform: uppercase;
+        flex: 1;
+        text-align: left;
+    }
+
+    /* 5. Special alignment for the Applicant Profile cell on mobile */
+    .user-profile-info {
+        flex-direction: row; /* Keep avatar and name side-by-side */
+        justify-content: flex-end;
+        gap: 8px;
+    }
+
+    .name-status-stack {
+        align-items: flex-end; /* Align text to the right to meet the label */
+    }
+
+    .applicant-name {
+        font-size: 14px;
+    }
+
+    .status-tag {
+        font-size: 10px;
+        padding: 2px 6px;
+    }
 }

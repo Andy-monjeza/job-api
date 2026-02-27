@@ -202,35 +202,33 @@ const populateApplicantTable = (applicants) => {
     
         row.setAttribute('data-category', app.jobTitle); 
 
-        row.innerHTML = `
-            <td class="primary-cell">
-                <div class="user-profile-info">
-                    <img src="${app.applicantPhoto || 'default-avatar.png'}" class="table-avatar">
-                    <div class="name-status-stack">
-                        <span class="applicant-name">${app.applicantName}</span>
-                        <span class="status-tag ${app.status.toLowerCase()}">${app.status}</span>
-                    </div>
-                </div>
-            </td>
-            <td class="job-title-cell">${app.jobTitle}</td>
-            <td class="location-cell">
-                <div class="icon-text">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-                    <span>${app.applicantLocation || 'Not Specified'}</span>
-                </div>
-            </td>
-            <td class="date-cell">
-                <div class="icon-text">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-                    <span>${new Date(app.appliedOn).toLocaleDateString()}</span>
-                </div>
-            </td>
-            <td class="action-cell">
-                <button class="options-btn" onclick="openApplicantMenu('${app._id}')">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="1"/><circle cx="12" cy="5" r="1"/><circle cx="12" cy="19" r="1"/></svg>
-                </button>
-            </td>
-        `;
+      row.innerHTML = `
+    <td data-label="Applicant" class="primary-cell">
+        <div class="user-profile-info">
+            <img src="${app.applicantPhoto || 'default-avatar.png'}" class="table-avatar">
+            <div class="name-status-stack">
+                <span class="applicant-name">${app.applicantName}</span>
+                <span class="status-tag ${app.status.toLowerCase()}">${app.status}</span>
+            </div>
+        </div>
+    </td>
+    <td data-label="Job Title" class="job-title-cell">${app.jobTitle}</td>
+    <td data-label="Location" class="location-cell">
+        <div class="icon-text">
+            <span>${app.applicantLocation || 'Not Specified'}</span>
+        </div>
+    </td>
+    <td data-label="Applied On" class="date-cell">
+        <div class="icon-text">
+            <span>${new Date(app.appliedOn).toLocaleDateString()}</span>
+        </div>
+    </td>
+    <td data-label="Actions" class="action-cell">
+        <button class="options-btn" onclick="openApplicantMenu('${app._id}')">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="1"/><circle cx="12" cy="5" r="1"/><circle cx="12" cy="19" r="1"/></svg>
+        </button>
+    </td>
+`;
         tbody.appendChild(row);
     });
 };
