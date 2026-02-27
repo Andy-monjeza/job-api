@@ -7,10 +7,117 @@
     overflow-y: auto;
 }
 
-/* Hide scrollbars but keep functionality */
-.job-manager-container::-webkit-scrollbar {
+/* --- Modal Form Layout --- */
+.modal-content {
+    border: none;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+::-webkit-scrollbar{
     display: none;
 }
+.modal-header {
+    margin-bottom: 25px;
+    padding-bottom: 20px;
+}
+
+.modal-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #111827;
+}
+
+/* --- Form Elements --- */
+.form-group {
+    margin-bottom: 1.25rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.field-label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #374151;
+    margin-bottom: 0.5rem;
+}
+
+/* Input, Select, and Textarea Styling */
+.modal-content input, 
+.modal-content select, 
+.modal-content textarea {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    background-color: #f9fafb;
+    border: 1px solid #d1d5db;
+    border-radius: 0.5rem;
+    font-size: 0.95rem;
+    color: #111827;
+    transition: all 0.2s ease;
+    outline: none;
+}
+
+/* Modern Focus State */
+.modal-content input:focus, 
+.modal-content select:focus, 
+.modal-content textarea:focus {
+    background-color: #ffffff;
+    border-color: #064be0;
+    box-shadow: 0 0 0 3px rgba(6, 75, 224, 0.1);
+}
+
+/* Textarea Specifics */
+.modal-content textarea {
+    min-height: 120px;
+    resize: vertical;
+    line-height: 1.5;
+}
+
+/* --- Form Grid for Side-by-Side inputs --- */
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+}
+
+/* Helper text/small descriptions under labels */
+.field-help {
+    font-size: 0.75rem;
+    color: #6b7280;
+    margin-top: 0.25rem;
+}
+
+/* --- Action Buttons --- */
+.modal-footer {
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #f3f4f6;
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+}
+
+.btn-cancel {
+    background: white;
+    color: #374151;
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: 1px solid #d1d5db;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.btn-cancel:hover {
+    background: #f3f4f6;
+}
+
+/* Responsive fix for Form Grid */
+@media screen and (max-width: 640px) {
+    .form-grid {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+}
+
+.job-manager-container::-webkit-scrollbar { display: none; }
 
 /* --- 2. Header & Top Controls --- */
 .job-board-header {
@@ -34,10 +141,12 @@
     border: none;
     display: flex;
     align-items: center;
+    justify-content: center; /* Ensures content stays centered */
     gap: 8px;
     font-weight: 500;
     cursor: pointer;
     transition: background 0.2s;
+    white-space: nowrap; /* Prevents text wrapping on small screens */
 }
 
 .btn-new-job:hover { background: #1e40af; }
@@ -48,10 +157,7 @@
     margin-bottom: 20px;
 }
 
-.search-container {
-    position: relative;
-    flex: 3;
-}
+.search-container { position: relative; flex: 3; }
 
 .search-icon {
     position: absolute;
@@ -75,7 +181,7 @@
 
 .filter-select { flex: 1; min-width: 150px; cursor: pointer; }
 
-/* --- 3. The Table System --- */
+/* --- 3. The Table & Cell System --- */
 .table-wrapper {
     background: white;
     border-radius: 12px;
@@ -84,10 +190,7 @@
     overflow-x: auto;
 }
 
-.job-table {
-    width: 100%;
-    border-collapse: collapse;
-}
+.job-table { width: 100%; border-collapse: collapse; }
 
 .job-table th {
     background: #f9fafb;
@@ -103,26 +206,15 @@
 .job-table td {
     padding: 16px 24px;
     border-bottom: 1px solid #f3f4f6;
+    color: rgb(54, 53, 53);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     vertical-align: middle;
-    color: #4b5563;
 }
 
-.job-table tr:hover { background-color: #f8fafc; }
-
-/* --- 4. Cell Content Styling --- */
 .user-profile-info { display: flex; align-items: center; gap: 12px; }
-
-.table-avatar { 
-    width: 38px; 
-    height: 38px; 
-    border-radius: 50%; 
-    object-fit: cover; 
-    border: 1px solid #e5e7eb; 
-}
-
+.table-avatar { width: 38px; height: 38px; border-radius: 50%; object-fit: cover; border: 1px solid #e5e7eb; }
 .name-status-stack { display: flex; flex-direction: column; gap: 2px; }
 .applicant-name { font-weight: 600; color: #111827; font-size: 15px; }
-
 .icon-text { display: flex; align-items: center; gap: 6px; color: #6b7280; font-size: 14px; }
 
 /* Status Badges */
@@ -133,78 +225,116 @@
     font-size: 11px;
     font-weight: 700;
     text-transform: uppercase;
-    width: fit-content;
 }
-
 .status-tag.submitted { background: #e0f2fe; color: #0369a1; }
 .status-tag.shortlisted { background: #fef3c7; color: #b45309; }
 .status-tag.hired { background: #dcfce7; color: #15803d; }
 .status-tag.rejected { background: #fee2e2; color: #b91c1c; }
 
-.options-btn {
-    background: none;
-    border: none;
-    color: #9ca3af;
-    cursor: pointer;
-    padding: 8px;
-    transition: color 0.2s;
+/* --- 4. Modal System (Restored) --- */
+.modal {
+    display: none; 
+    position: fixed;
+    z-index: 2000; /* Higher than dashboard sidebar */
+    left: 0; top: 0; width: 100%; height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    backdrop-filter: blur(2px);
 }
-.options-btn:hover { color: #111827; }
 
-/* --- 5. Mobile Responsive (Optimized) --- */
+.modal-content {
+    background-color: white;
+    margin: 2% auto;
+    padding: 30px;
+    width: 90%;
+    max-width: 700px;
+    border-radius: 12px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #f3f4f6;
+    padding-bottom: 15px;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.form-group { margin-bottom: 15px; }
+
+.field-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: #4b5563;
+    margin-bottom: 6px;
+    display: block;
+}
+
+.btn-submit-job {
+    background: #111827;
+    color: white;
+    width: 100%;
+    padding: 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    border: none;
+    margin-top: 10px;
+}
+
+/* --- 5. Mobile Adjustments --- */
 @media screen and (max-width: 768px) {
-    .job-manager-container { padding: 1em; }
+    .job-manager-container { padding: 1.2em; }
     
-    .table-controls { flex-direction: column; }
-    
-    .job-board-header { flex-direction: column; align-items: flex-start; gap: 15px; }
-    .btn-new-job { width: 100%; justify-content: center; }
-
-    /* Stack Table */
-    .job-table thead { display: none; } /* Hide headers */
-
-    .job-table, .job-table tbody, .job-table tr, .job-table td {
-        display: block;
-        width: 100%;
+    /* Center and stack header for mobile */
+    .job-board-header { 
+        flex-direction: column; 
+        align-items: stretch; 
+        gap: 16px; 
+        text-align: center;
     }
 
+    .btn-new-job {
+        width: 100%; /* Full width button on mobile for better thumb reach */
+        height: 48px;
+    }
+
+    .table-controls { flex-direction: column; }
+    .form-grid { grid-template-columns: 1fr; }
+
+    /* Stacking Table Card View */
+    .job-table thead { display: none; }
+    .job-table, .job-table tbody, .job-table tr, .job-table td { display: block; width: 100%; }
+
     .job-table tr {
-        margin-bottom: 1.5rem;
+        margin-bottom: 1.2rem;
         border: 1px solid #e5e7eb;
         border-radius: 12px;
-        padding: 8px;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+        padding: 10px;
     }
 
     .job-table td {
         display: flex;
         justify-content: space-between;
-        align-items: center;
-        text-align: right;
-        padding: 12px 8px;
+        padding: 10px 5px;
         border-bottom: 1px solid #f3f4f6;
     }
 
-    .job-table td:last-child { border-bottom: none; }
-
-    /* Responsive Labels */
     .job-table td::before {
-        content: attr(data-label); /* Uses the data-label from HTML */
+        content: attr(data-label);
         font-weight: 700;
         color: #6b7280;
-        font-size: 12px;
+        font-size: 11px;
         text-transform: uppercase;
-        text-align: left;
-        flex: 1;
     }
 
-    /* Column labels if data-label is missing (fallback) */
-    .job-table td:nth-of-type(1):before { content: "Applicant"; }
-    .job-table td:nth-of-type(2):before { content: "Job Title"; }
-    .job-table td:nth-of-type(3):before { content: "Location"; }
-    .job-table td:nth-of-type(4):before { content: "Applied On"; }
-
-    /* Alignment fix for user info in mobile */
     .user-profile-info { flex-direction: row-reverse; }
-    .name-status-stack { align-items: flex-end; }
 }
