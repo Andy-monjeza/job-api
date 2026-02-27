@@ -35,6 +35,7 @@ const getMyApplications=async(req,res)=>{
         res.status(500).send("Something went wrong, please try again sometime ");
     }
 }
+
 const getJobManager=async(req,res)=>{
     try {
             return res.sendFile(path.join(__dirname, '../public/job-manager.html'));
@@ -43,10 +44,31 @@ const getJobManager=async(req,res)=>{
         res.status(500).send("Something went wrong, please try again sometime ");
     }
 }
+
+const getRecruiterDash=async(req,res)=>{
+     try {
+            return res.sendFile(path.join(__dirname, '../public/recruiterDash.html'));
+        
+    } catch (error) {
+        res.status(500).send("Something went wrong, please try again sometime ");
+    }
+}
+
+const getApplicantsManager=async(req,res)=>{
+       try {
+            return res.sendFile(path.join(__dirname, '../public/applicantsManagerTab.html'));
+        
+    } catch (error) {
+        res.status(500).send("Something went wrong, please try again sometime ");
+    }
+}
+
 module.exports ={
     getDashBoardPage,
     getProfilePage,
     getSavedJobs,
     getMyApplications,
-    getJobManager
+    getJobManager,
+    getRecruiterDash,
+    getApplicantsManager
 };

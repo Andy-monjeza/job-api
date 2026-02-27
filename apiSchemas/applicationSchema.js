@@ -2,7 +2,7 @@ const mongoose= require('mongoose');
 
 const applicationSchema = new mongoose.Schema({
     job:{type:mongoose.Schema.Types.ObjectId, ref:'job',required:true},
-    applicant:{type:mongoose.Schema.Types.ObjectId,ref:'User',required:true},
+    applicant:{type:mongoose.Schema.Types.ObjectId,ref:'jobseeker',required:true},
     cv:{type:String},
      status:{
         type:String,
@@ -13,5 +13,5 @@ const applicationSchema = new mongoose.Schema({
    
 })
 
-const applications= mongoose.model('application',applicationSchema);
+const applications= mongoose.model('applications',applicationSchema);
 module.exports = {applications};

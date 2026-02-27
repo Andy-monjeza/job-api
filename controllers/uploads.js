@@ -1,51 +1,55 @@
 const { cloudinary } = require('../utils/cloudinary.js'); 
-const {jobSeeker} = require('../apiSchemas/usersSchema.js'); 
+const { jobSeeker, recruiter } = require('../apiSchemas/usersSchema.js'); 
 
-const uploadProfile = async (req, res) => {
+const updateFullProfile = async (req, res) => {
     try {
+        const userId = req.user.id;
+        const userRole = req.user.role;
+        let updateData = { ...req.body }; // This catches Name, Skills, Bio, etc.
 
-        if (!req.file) {
-            return res.status(400).json({ success: false, message: "No file uploaded" });
+        // 1. Handle Image Upload if a file exists
+        if (req.file) {
+            const streamUpload = (buffer) => {
+                return new Promise((resolve, reject) => {
+                    const stream = cloudinary.uploader.upload_stream(
+                        { folder: "infinite_jobs_profiles" },
+                        (error, result) => {
+                            if (result) resolve(result);
+                            else reject(error);
+                        }
+                    );
+                    stream.end(buffer);
+                });
+            };
+
+            const result = await streamUpload(req.file.buffer);
+        
+            updateData.profilePicture = {
+                url: result.secure_url,
+                publicId: result.public_id
+            };
         }
 
-        
-        const streamUpload = (buffer) => {
-            return new Promise((resolve, reject) => {
-                const stream = cloudinary.uploader.upload_stream(
-                    { 
-                        folder: "infinite_jobs_profiles",
-                    },
-                    (error, result) => {
-                        if (result) resolve(result);
-                        else reject(error);
-                    }
-                );
-        
-                stream.end(buffer);
-            });
-        };
+        // 2. Choose the correct Model based on role
+        const Model = userRole === 'jobseeker' ? jobSeeker : recruiter;
 
-         const result = await streamUpload(req.file.buffer);
-          const updatedUser = await jobSeeker.findByIdAndUpdate(
-            req.user.id, 
-            { 
-                profilePicture: {
-                    url: result.secure_url,
-                    publicId: result.public_id 
-                }
-            }, 
-            { new: true }
+        // 3. Update everything in one go
+        const updatedUser = await Model.findByIdAndUpdate(
+            userId, 
+            { $set: updateData }, 
+            { new: true, runValidators: true }
         );
+
         res.status(200).json({
             success: true,
             message: "Profile updated successfully!",
-            url: updatedUser.profilePicture
+            user: updatedUser
         });
 
     } catch (error) {
-        console.error("Cloudinary Upload Error:", error);
-        res.status(500).json({ success: false, message: "Upload failed" });
+        console.error("Update Error:", error);
+        res.status(500).json({ success: false, message: "Server error during update" });
     }
 };
 
-module.exports = { uploadProfile };
+module.exports = { updateFullProfile }; 

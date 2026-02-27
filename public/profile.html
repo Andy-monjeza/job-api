@@ -23,10 +23,9 @@
                 <div class="names-container">
                     <div class="top-row">
                         <p class="Username">John Doe</p>
-                        <p class="skillset">Backend Engineer </p>
                     </div>
                     
-                    
+                    <p class="skillset">Backend Engineer </p>
                     
                     <div class="user-details-row">
                         <span class="detail-item location"><i class="fa-solid fa-location-dot"></i> Lilongwe, Malawi</span>
@@ -39,12 +38,13 @@
 
             <div class="button-group">
 
-             <button class="btn-profile-update">
+             <button onclick="openUpdatePopup()" class="btn-profile-update btn-update">
                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-edit">
                     <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
                     <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
                 </svg>
                     <span>Update Profile</span>
+            
              </button>
 
             
@@ -128,3 +128,39 @@
     </div>
            </div>
         </div>
+
+
+        <div id="updatePopup" class="popup-overlay">
+    <div class="popup-content">
+        <span class="close-btn" onclick="closePopup()">&times;</span>
+        <h2 style="text-align: center;">Edit Profile</h2>
+        
+        <form id="updateProfileForm">
+            <div class="image-upload-section">
+                <div class="profile-preview-container">
+                    <img id="imagePreview" src="default-avatar.png">
+                </div>
+                <label for="profilePicInput" class="upload-label">Change Photo</label>
+                <input type="file" name="profilePicture" id="profilePicInput" accept="image/*" style="display:none;">
+            </div>
+
+            <label>Full Name</label>
+            <input type="text" name="name" id="updateName" class="full-width" required>
+
+            <label>Profession</label>
+            <input type="text" name="Profession">
+
+            <label>Location</label>
+            <input type="text" name="location">
+
+            <div id="jobseekerFields" class="full-width" style="display:none;">
+                <label>Skills</label>
+                <input type="text" name="skills" placeholder="Node, React...">
+                <label>About</label>
+                <textarea name="about" rows="3"></textarea>
+            </div>
+
+            <button type="submit" id="saveBtn" class="full-width">Save Changes</button>
+        </form>
+    </div>
+</div>

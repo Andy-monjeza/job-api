@@ -312,35 +312,46 @@
 
 }
 
-/* MOBILE */
-@media (max-width: 768px) {
+@media (max-width:0px) {
 
-    .cover-photo{
-        height: 160px;
+    .nameProfile {
+        align-items: flex-start;
     }
 
-    .profile-picture{
-        width: 120px;
-        height: 120px;
+    .names-container {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        grid-template-areas:
+            "name name"
+            "details details";
+        width: 100%;
     }
-.share-profile{
-    padding: 10px;
-    font-size: 1em;
-}
-    .Username{
-        font-size: 1.2rem;
+
+    .top-row {
+        grid-area: name;
     }
-    .btn-profile-update{
-        padding: 0.6em 1.5em;
-        font-size: 0.8em;
-    }
-    .skillset{
+
+    .user-details-row {
+        grid-area: details;
+        display: flex;
+        flex-direction: column;
+        margin-top: 0.5rem;
         font-size: 0.9rem;
     }
 
+    .pfp-container {
+        flex-shrink: 0;
+    }
+
+    .profile-picture {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        object-fit: cover;
+    }
 }
 
-/* SMALL PHONES */
+
 @media (max-width: 480px) {
 
     .nameProfile{
@@ -355,7 +366,7 @@
     }
 
     .cover-photo{
-        height: 170px;
+        height: 130px;
     }
 
     .contact-info{
@@ -364,4 +375,75 @@
         gap: 15px;
     }
 
+}
+
+/* Overlay remains full screen */
+.popup-overlay {
+    position: fixed;
+    top: 0; left: 0; 
+    width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: none; /* Controlled by JS */
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    padding: 10px; /* Space for mobile edges */
+}
+
+/* The actual Card */
+.popup-content {
+    background: #fff;
+    width: 100%;
+    max-width: 550px; /* Desktop width */
+    max-height: 90vh; /* Prevents disappearing off screen */
+    overflow-y: auto; /* Scrollable if content is long */
+    padding: 25px;
+    border-radius: 15px;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+/* Responsive Image Preview */
+.image-upload-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.profile-preview-container {
+    width: 120px; 
+    height: 120px;
+    border-radius: 50%;
+    border: 4px solid #007bff;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+/* Form Layout: 2 columns on desktop, 1 on mobile */
+#updateProfileForm {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+/* Fields that should always be full width */
+.full-width, label, .image-upload-section, h2 {
+    grid-column: span 2;
+}
+
+/* Mobile Adjustments (Phones) */
+@media (max-width: 600px) {
+    #updateProfileForm {
+        grid-template-columns: 1fr; /* Stack everything */
+    }
+    .full-width, label, .image-upload-section {
+        grid-column: span 1;
+    }
+    .popup-content {
+        padding: 15px;
+        border-radius: 0; /* Optional: full screen feel on mobile */
+        height: 100%; /* Full height on tiny phones */
+        max-height: 100vh;
+    }
 }

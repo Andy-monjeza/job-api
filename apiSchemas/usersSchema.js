@@ -93,11 +93,11 @@ const recruiterSchema = new mongoose.Schema({
   password: { type: String, required: true },
   role:{type:String,enum: ['recruiter'],default:"recruiter"},
   profilePicture: {url:String, publicId:String},
-  companyName: { type: String },
+  coverPhoto:{url:String, publicId:String},
   companyWebsite: String,
   companyDescription: String,
   location: String,
-  contactNumber: String,
+  phoneNo: Number,
 
   postedJobs: [{ type: mongoose.Schema.Types.ObjectId, ref: "Job" }],
 

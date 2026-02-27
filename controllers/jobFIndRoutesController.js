@@ -14,7 +14,7 @@ const getAllJobs=async(req,res)=>{
     }
 
 }
-
+ 
 const getMyJobs = async (req, res) => {
     try {
         const recruiterId = req.user.id;

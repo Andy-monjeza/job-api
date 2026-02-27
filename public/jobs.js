@@ -38,7 +38,7 @@ const applyForJob = async (jobId) => {
             btn.innerHTML = 'Applied <i class="fa-solid fa-check"></i>';
             btn.style.background = '#10b981';
             btn.disabled = true;
-        }
+        }else{alert(data.message)}
     } catch (err) {
         console.error("Application failed", err);
     }
@@ -278,6 +278,7 @@ jobPreviewContainer.addEventListener("click", async (e) => {
     const applyBtn = e.target.closest('.btn-primary');
     if (applyBtn) {
         const id = applyBtn.dataset.jobId;
+        console.log(id)
         applyForJob(id); // Make sure your apply function updates UI to "Applied"
         return; // Exit so we don't check other conditions
     }

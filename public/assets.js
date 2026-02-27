@@ -119,30 +119,32 @@ const fetchData = async (url, method, contType) => {
     }
 }
 
-dashBtn.addEventListener('click', async () => {
+sideBar.addEventListener('click', async (e) => {
+  
+    if (e.target.closest('.dashBtn') || e.target.closest('.recruiter-dash')) {
+        const user=getCurrentUser();
 
-         const data = await fetchData('/api/assets/dashboard', 'GET', 'text/html');
-               const applicationCount=await updateApplicationsCount();
-            if (data) {
-                contentSection.innerHTML = data;
-                setTimeout(() => {
-                const chartElement = document.querySelector("#chart");
-                if (chartElement) {
-                    applicationsNum= document.querySelector('.applications-count');
-                    console.log('Fetching dashboard...');
-                    initChart();
-                    buildDashBoard();
-                    applicationsNum.textContent=applicationCount.myApplications.length;
-                } else {
-                    console.error("Chart container not found in the fetched HTML!");
-                }
-                 
-    }, 10); 
-
-    
-}
+        if(user.role !== "recruiter"){
+      console.log('Fetching dashboard...');
         
-    
+        const data = await fetchData('/api/assets/dashboard', 'GET', 'text/html');
+        const applicationCount = await updateApplicationsCount();
+        
+        if (data) {
+            contentSection.innerHTML = data;
+         
+            setTimeout(() => {
+                initChart();
+                buildDashBoard();
+                const applicationsNum = document.querySelector('.applications-count');
+                if (applicationsNum) {
+                    applicationsNum.textContent = applicationCount.myApplications.length;
+                }
+            }, 50);
+        }
+        }
+        
+    }
 });
 
 const getProfile=async()=>{
@@ -193,13 +195,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const toggleSidebar = () => {
         sidebar.classList.toggle('active');
-        // Prevent body from scrolling when menu is open
+        
         document.body.style.overflow = sidebar.classList.contains('active') ? 'hidden' : '';
     };
 
     menuToggle.addEventListener('click', toggleSidebar);
-    overlay.addEventListener('click', toggleSidebar);
-
+    if (overlay){
+      overlay.addEventListener('click', toggleSidebar);
+    }
+   
     
     const options = document.querySelectorAll('.options');
     options.forEach(opt => {

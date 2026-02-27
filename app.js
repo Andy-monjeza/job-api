@@ -18,6 +18,8 @@ const fileUploadRoute=require('./routes/image-upload-route.js')
 const savedJobsRoute=require('./routes/savedJobs.js')
 const myAPplicationsRoute=require('./routes/myApplicationsRoute.js')
 const getMarketDemandStatsRoute=require('./routes/marketDemandStatsRoute.js');
+const recruiterAnalytics=require('./routes/recruiterAnalytics.js')
+const getRecruiterApplicants=require('./routes/getRecruiterApplicantsRoute.js')
 
 app.use(express.static('public'))
 app.use('/api',limit);
@@ -43,7 +45,8 @@ app.use('/api/uploads',fileUploadRoute);
 app.use('/api/saved-jobs',savedJobsRoute);
 app.use('/api/applications',myAPplicationsRoute);
 app.use('/api/market-demand',getMarketDemandStatsRoute);
-
+app.use('/api/analytics',recruiterAnalytics);
+app.use('/api/applicants',getRecruiterApplicants);
 
 app.listen(5000,()=>{
    

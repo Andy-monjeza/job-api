@@ -52,10 +52,11 @@ export const buildProfile=async()=>{
                 
             })
               location.forEach(e=>{
-                if(e.classList.contains('info-part')){
+              
+                   if(e.classList.contains('info-part')){
                     e.innerHTML=profile.userDetails.location;
                 }else{e.innerHTML=`<i class="fa-solid fa-location-dot"></i>`+ profile.userDetails.location;}
-                
+              
             })
             profilePicture.src=profile.userDetails.profilePicture.url ;
             topSocialLink.textContent=profile.userDetails.prefsocialLink || ' ';

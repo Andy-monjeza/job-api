@@ -1,4 +1,4 @@
- export const initChart = (initialData = [0,0, 0, 0, 0, 0, 0]) => {
+ export const initChart = (initialData = [0, 0, 0, 0, 0, 0, 0]) => {
     const options = {
         chart: {
             type: 'area',

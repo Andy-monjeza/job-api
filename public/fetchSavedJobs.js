@@ -15,7 +15,7 @@ export const buildSavedJobsTab = async () => {
 
         const savedData = await savedRes.json();
         const appData = await appRes.json();
-
+        console.log(savedData)
        
         const savedJobs = savedData.savedJobs || [];
         const applications = appData.myApplications || [];
@@ -115,7 +115,7 @@ const emptySavedSVG = `
                         </div>
                     <button class="detail-view-btn">Apply</button>
                 </div>
-            </div>>`;
+            </div>`;
     });
 
     container.innerHTML = html;

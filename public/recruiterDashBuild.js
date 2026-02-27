@@ -1,3 +1,16 @@
+import { 
+    initChart,
+    fetchRecruiterAnalytics,
+    fetchRecruiterDash, 
+    buildDashboard,
+    fillStats,
+    fetchApplicantManagerTab,
+    loadApplicants,
+    updateJobFilterOptions,
+    populateApplicantTable,
+    filterJobs
+} from "./recruiter-build-helper.js";
+
 const contentSection=document.querySelector('.content-bar');
 
 const getJobManager = async () => {
@@ -22,6 +35,7 @@ const buildJobManagerTab = async () => {
     contentSection.innerHTML = shell;
 
     const jobs = await fetchRecruiterJobs();
+      console.log(jobs)
     const tableBody = document.querySelector('#jobTableBody');
     const categoryFilter = document.getElementById('categoryFilter');
 
@@ -113,7 +127,7 @@ const handleJobSubmission = async (form) => {
     };
 
     try {
-        const response = await fetch('/api/all-jobs/create', {
+        const response = await fetch('/api/job-create/post-job', {
             method: 'POST',
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem('token')}`,
@@ -132,7 +146,6 @@ const handleJobSubmission = async (form) => {
     }
 };
 
-
 window.closeJobModal = () => {
     const modal = document.getElementById('jobModal');
     modal.style.display = 'none';
@@ -149,6 +162,8 @@ window.onclick = (event) => {
 
 export const setupRecruiterListeners = () => {
     const jobManagerOption = document.querySelector('.manage-jobs');
+    const dashBoardOption= document.querySelector('.recruiter-dash')
+    const applicantsOption=document.querySelector('.view-applicants');
 
     jobManagerOption.addEventListener('click', async () => {
         await buildJobManagerTab();
@@ -161,6 +176,47 @@ export const setupRecruiterListeners = () => {
         }
     });
 
+    dashBoardOption.addEventListener('click',async()=>{
+        try{
+           const dashboard=await fetchRecruiterDash();
+           if(dashboard){
+            buildDashboard(dashboard);
+            const analytics=await fetchRecruiterAnalytics();
+            const categories = analytics.skillDemand.map(item => item._id);
+            const values = analytics.skillDemand.map(item => item.count);
+    
+            fillStats(analytics);
+            initChart(values, categories, "Applicants Per Skill");
+           }
+        }catch(err){
+            console.log(err.message);
+        }
+    })
+
+    applicantsOption.addEventListener('click', async () => {
+    const contentSection = document.querySelector('.content-bar');
+    
+    // 1. Load the shell HTML
+    contentSection.innerHTML = await fetchApplicantManagerTab();
+    
+    // 2. Fetch and render data
+    const applicants = await loadApplicants();
+    populateApplicantTable(applicants);
+    updateJobFilterOptions(applicants);
+
+    // 3. ACTIVATE THE FILTERING
+    const searchInput = document.getElementById('jobSearch');
+    const categoryFilter = document.getElementById('categoryFilter');
+
+    if (searchInput) {
+        // Use 'input' instead of 'keyup' for a smoother experience (handles deletes/pastes)
+        searchInput.addEventListener('input', filterJobs);
+    }
+    if (categoryFilter) {
+        categoryFilter.addEventListener('change', filterJobs);
+    }
+});
+
     document.addEventListener('submit', async (e) => {
         if (e.target.id === 'postJobForm') {
             e.preventDefault();
@@ -168,8 +224,6 @@ export const setupRecruiterListeners = () => {
         }
     });
 };
-
-
 
 window.filterJobs = () => {
     const searchInput = document.getElementById('jobSearch').value.toLowerCase();
@@ -184,3 +238,4 @@ window.filterJobs = () => {
         row.style.display = (matchesSearch && matchesCategory) ? "" : "none";
     });
 };
+
