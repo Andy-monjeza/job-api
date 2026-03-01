@@ -1,4 +1,6 @@
- const initChart = (
+const chart=document.querySelector('#recruiter-chart');
+
+const initChart = (
   data = [],
   categories = [],
   seriesName = "Skill Demand"
@@ -56,14 +58,16 @@
       }
     }
   };
-
-  const chart = new ApexCharts(
+if (  document.querySelector("#recruiter-chart")){
+const chart = new ApexCharts(
     document.querySelector("#recruiter-chart"),
     options
   );
 
   chart.render();
   return chart;
+}
+  
 };
 
  const fetchRecruiterAnalytics = async () => {

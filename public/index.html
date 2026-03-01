@@ -218,15 +218,16 @@
     </div>
   </footer>
 
+   <script src="index.js"></script>
+
   <script>
-    // Scroll reveal
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('active'); });
     }, { threshold: 0.12 });
 
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-    // Hamburger toggle
+    
     const hamburger = document.getElementById('hamburger');
     const mobileMenu = document.getElementById('mobile-menu');
 
@@ -235,7 +236,6 @@
       mobileMenu.classList.toggle('open');
     });
 
-    // Close on outside click
     document.addEventListener('click', (e) => {
       if (!hamburger.contains(e.target) && !mobileMenu.contains(e.target)) {
         hamburger.classList.remove('open');
@@ -243,8 +243,6 @@
       }
     });
   </script>
-</body>
-</html>
-
+ 
 </body>
 </html>

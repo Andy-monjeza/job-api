@@ -69,8 +69,9 @@
       object-fit: cover;
     }
   .user-name{
-    color: white;
-    font-weight: 500;
+    color: rgb(180, 176, 176);
+    font-weight: 600;
+    font-size: 0.9rem;
   }
     .home-jobs, .home-dashboard {
       text-decoration: none;
@@ -310,6 +311,7 @@
       height: 100%;
       z-index: 1;
       display: flex;
+      padding: 2em;
       justify-content: center;
       align-items: center;
       opacity: 0.6;
@@ -715,6 +717,10 @@
       .footer { padding: 3rem 1.25rem 1.5rem; }
       .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
       .footer-brand { grid-column: auto; }
+
+      .stat-card{
+        width: fit-content  ;
+      }
     }
 
     @media (max-width: 380px) {

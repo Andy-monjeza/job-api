@@ -3,46 +3,65 @@
     padding: 0;
     box-sizing: border-box;
 }
+
+/* ================= MAIN LAYOUT ================= */
+
 .main-content {
     display: flex;
-    height: 85%;
+    height: 85vh;
     width: 100%;
     background-color: #b1b8c0;
     border-radius: 13px;
-    padding: 1em 0.3em;
+    padding: 1em 0.8em;
     gap: 20px;
+    overflow: hidden; /* prevents double scroll */
 }
+
+/* ================= APPLICATION SIDEBAR ================= */
 
 .application-stats {
     width: 25%;
+    min-width: 240px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: flex-start;
     padding: 1em;
     border-right: 2px solid rgba(255, 255, 255, 0.2);
+    gap: 2rem;
 }
 
-.icon-circle {
+/* Top Section */
+.application-stats .sidebar-top{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5em;
+}
+
+/* Icon */
+.application-stats .icon-circle {
     font-size: 2rem;
-    color:  #0f4fc5;
-    margin-bottom: 2em;
+    color: #0f4fc5;
 }
 
-.stat-hero {
-    font-size: 7rem; 
+/* Count */
+.application-stats .stat-hero {
+    font-size: 7rem;
     font-weight: 900;
     color: #0f4fc5;
     line-height: 1;
 }
-.stats-holder{
+
+/* Holder */
+.application-stats .stats-holder{
     display: flex;
     flex-direction: column;
     gap: 1em;
     align-items: center;
-    margin-top: 30%;
 }
 
-.stat-label {
+/* Label */
+.application-stats .stat-label {
     font-weight: 700;
     color: #374151;
     text-transform: uppercase;
@@ -50,14 +69,15 @@
     letter-spacing: 1px;
 }
 
-.sidebar-accent-box {
+/* Accent Box */
+.application-stats .sidebar-accent-box {
     background: rgba(255, 255, 255, 0.3);
     border-radius: 12px;
     padding: 15px;
-    margin-top: auto;
+    margin-top: auto; /* pushes it to bottom */
 }
 
-.accent-item {
+.application-stats .accent-item {
     display: flex;
     align-items: center;
     gap: 10px;
@@ -66,38 +86,42 @@
     font-size: 0.85rem;
 }
 
-.dot { width: 12px; height: 12px; border-radius: 50%; }
-.stat-comp{ color: black; }
+/* Dots */
+.dot { 
+    width: 12px; 
+    height: 12px; 
+    border-radius: 50%; 
+}
+
+.stat-comp{ 
+    color: black; 
+}
+
 .green { background: #10b981; }
-.orange{ background: rgb(223, 146, 4);}
+.orange{ background: rgb(223, 146, 4); }
 .red { background: #da0a0a; }
 
+/* ================= RIGHT SIDE (Applications List) ================= */
 
-.saved-jobs-container {
-    flex-grow: 1;
+.applied-jobs-wrapper{
     display: flex;
     flex-direction: column;
-    gap: 15px;
-    padding: 1em;
-    overflow-y: auto;
-}
-.saved-jobs-container::-webkit-scrollbar{
-    display: none;
-}
-.saved-jobs-wrapper{
-    display: flex;
-    flex-direction: column;
-    color: black;
     width: 100%;
+    color: black;
+    overflow: hidden;
 }
-.saved-jobs-options{
+
+/* Options Bar */
+.applied-jobs-wrapper .saved-jobs-options{
     display: flex;
     gap: 1em;
     justify-content: flex-end;
     padding: 0.5em 2em;
-    border-bottom: 1px solid  rgba(255, 255, 255, 0.3);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    flex-shrink: 0;
 }
-.saved-jobs-options svg{
+
+.applied-jobs-wrapper .saved-jobs-options svg{
     background-color: #89919b;
     height: 25px;
     width: 25px;
@@ -105,9 +129,23 @@
     border-radius: 5px;
     cursor: pointer;
 }
-.saved-jobs-options svg:hover{
-    background-color: #89919b;
+
+/* Scrollable Container */
+.applied-jobs-wrapper .application-container{
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 1em;
+    overflow-y: auto;
 }
+
+/* Hide scrollbar */
+.applied-jobs-wrapper .application-container::-webkit-scrollbar{
+    display: none;
+}
+
+/* Job Footer Text */
 .job-body p {
     font-size: 0.8rem;
     color: #4b5563;
@@ -115,10 +153,72 @@
     padding-top: 10px;
     border-top: 1px solid #f3f4f6;
 }
-.job-status{
-    border: 1px solid  #0f4fc5;
+
+/* Job Status Badge */
+.applied-jobs-wrapper .job-status{
+    border: 1px solid #0f4fc5;
     padding: 0.3em 0.7em;
     border-radius: 5px;
     font-size: 12px;
     color: #0f4fc5;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 1024px){
+    .application-stats{
+        width: 30%;
+    }
+}
+
+@media (max-width: 768px){
+
+    .main-content{
+        flex-direction: column;
+        height: auto;
+    }
+
+    .application-stats{
+        width: 100%;
+        min-width: unset;
+        border-right: none;
+        border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .application-stats .sidebar-top{
+        flex-direction: row;
+        align-items: center;
+        gap: 1em;
+    }
+
+    .application-stats .stats-holder{
+        align-items: flex-start;
+    }
+
+    .applied-jobs-wrapper{
+        height: 60vh;
+    }
+
+    .application-stats .stat-hero{
+        font-size: 4rem;
+    }
+}
+
+@media (max-width: 480px){
+
+    .application-stats .stat-hero{
+        font-size: 3rem;
+    }
+
+    .application-stats .stat-label{
+        font-size: 0.7rem;
+    }
+
+    .applied-jobs-wrapper .saved-jobs-options svg{
+        height: 20px;
+        width: 20px;
+    }
 }
