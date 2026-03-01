@@ -29,6 +29,7 @@
     flex-direction: column;
     position: relative;
     width:100%;
+    overflow: visible;
 }
 
 .cover-photo {
@@ -292,158 +293,158 @@
 .detail-view-btn:hover {
     background:  #0f4fc5;
     color: white;
-}
-
-/* =====================
-   RESPONSIVE
-===================== */
-
-/* TABLET */
-@media (max-width: 992px) {
-
-    .content{
-        flex-direction: column;
     }
 
-    .content-left-side,
-    .content-right-side{
+    /* =====================
+    RESPONSIVE
+    ===================== */
+
+    /* TABLET */
+    @media (max-width: 992px) {
+
+        .content{
+            flex-direction: column;
+        }
+
+        .content-left-side,
+        .content-right-side{
+            width: 100%;
+        }
+
+    }
+
+    @media (max-width:0px) {
+
+        .nameProfile {
+            align-items: flex-start;
+        }
+
+        .names-container {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            grid-template-areas:
+                "name name"
+                "details details";
+            width: 100%;
+        }
+
+        .top-row {
+            grid-area: name;
+        }
+
+        .user-details-row {
+            grid-area: details;
+            display: flex;
+            flex-direction: column;
+            margin-top: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .pfp-container {
+            flex-shrink: 0;
+        }
+
+        .profile-picture {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+    }
+
+
+    @media (max-width: 480px) {
+
+        .nameProfile{
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 1em;
+        }
+
+        .profile-picture{
+            width: 125px;
+            height: 125px;
+        }
+
+        .cover-photo{
+            height: 130px;
+        }
+
+        .contact-info{
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 15px;
+        }
+
+    }
+
+    /* Overlay remains full screen */
+    .popup-overlay {
+        position: fixed;
+        top: 0; left: 0; 
+        width: 100%; height: 100%;
+        background: rgba(0, 0, 0, 0.8);
+        display: none; /* Controlled by JS */
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+        padding: 10px; /* Space for mobile edges */
+    }
+
+    /* The actual Card */
+    .popup-content {
+        background: #fff;
         width: 100%;
+        max-width: 550px; /* Desktop width */
+        max-height: 90vh; /* Prevents disappearing off screen */
+        overflow-y: auto; /* Scrollable if content is long */
+        padding: 25px;
+        border-radius: 15px;
+        position: relative;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.3);
     }
 
-}
-
-@media (max-width:0px) {
-
-    .nameProfile {
-        align-items: flex-start;
-    }
-
-    .names-container {
-        display: grid;
-        grid-template-columns: auto 1fr;
-        grid-template-areas:
-            "name name"
-            "details details";
-        width: 100%;
-    }
-
-    .top-row {
-        grid-area: name;
-    }
-
-    .user-details-row {
-        grid-area: details;
+    /* Responsive Image Preview */
+    .image-upload-section {
         display: flex;
         flex-direction: column;
-        margin-top: 0.5rem;
-        font-size: 0.9rem;
+        align-items: center;
+        margin-bottom: 20px;
     }
 
-    .pfp-container {
-        flex-shrink: 0;
-    }
-
-    .profile-picture {
-        width: 60px;
-        height: 60px;
+    .profile-preview-container {
+        width: 120px; 
+        height: 120px;
         border-radius: 50%;
-        object-fit: cover;
-    }
-}
-
-
-@media (max-width: 480px) {
-
-    .nameProfile{
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 1em;
+        border: 4px solid #007bff;
+        overflow: hidden;
+        margin-bottom: 10px;
     }
 
-    .profile-picture{
-        width: 95px;
-        height: 95px;
-    }
-
-    .cover-photo{
-        height: 130px;
-    }
-
-    .contact-info{
-        flex-direction: column;
-        align-items: flex-start;
+    /* Form Layout: 2 columns on desktop, 1 on mobile */
+    #updateProfileForm {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
         gap: 15px;
     }
 
-}
-
-/* Overlay remains full screen */
-.popup-overlay {
-    position: fixed;
-    top: 0; left: 0; 
-    width: 100%; height: 100%;
-    background: rgba(0, 0, 0, 0.8);
-    display: none; /* Controlled by JS */
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
-    padding: 10px; /* Space for mobile edges */
-}
-
-/* The actual Card */
-.popup-content {
-    background: #fff;
-    width: 100%;
-    max-width: 550px; /* Desktop width */
-    max-height: 90vh; /* Prevents disappearing off screen */
-    overflow-y: auto; /* Scrollable if content is long */
-    padding: 25px;
-    border-radius: 15px;
-    position: relative;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-}
-
-/* Responsive Image Preview */
-.image-upload-section {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 20px;
-}
-
-.profile-preview-container {
-    width: 120px; 
-    height: 120px;
-    border-radius: 50%;
-    border: 4px solid #007bff;
-    overflow: hidden;
-    margin-bottom: 10px;
-}
-
-/* Form Layout: 2 columns on desktop, 1 on mobile */
-#updateProfileForm {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 15px;
-}
-
-/* Fields that should always be full width */
-.full-width, label, .image-upload-section, h2 {
-    grid-column: span 2;
-}
-
-/* Mobile Adjustments (Phones) */
-@media (max-width: 600px) {
-    #updateProfileForm {
-        grid-template-columns: 1fr; /* Stack everything */
+    /* Fields that should always be full width */
+    .full-width, label, .image-upload-section, h2 {
+        grid-column: span 2;
     }
-    .full-width, label, .image-upload-section {
-        grid-column: span 1;
+
+    /* Mobile Adjustments (Phones) */
+    @media (max-width: 600px) {
+        #updateProfileForm {
+            grid-template-columns: 1fr; /* Stack everything */
+        }
+        .full-width, label, .image-upload-section {
+            grid-column: span 1;
+        }
+        .popup-content {
+            padding: 15px;
+            border-radius: 0; /* Optional: full screen feel on mobile */
+            height: 100%; /* Full height on tiny phones */
+            max-height: 100vh;
+        }
     }
-    .popup-content {
-        padding: 15px;
-        border-radius: 0; /* Optional: full screen feel on mobile */
-        height: 100%; /* Full height on tiny phones */
-        max-height: 100vh;
-    }
-}

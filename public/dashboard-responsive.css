@@ -40,9 +40,8 @@
     }
 
     .stat-box {
-        max-width: none;
         padding:6px;
-    
+        
     }
 
     .count {
@@ -55,9 +54,20 @@
     }
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 600px) {
     .stats {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr 2fr;
+    }
+
+    .stat-box {
+        padding:2px;
+       
+    }
+    .count{
+        font-size: 0.5rem;
+    }
+    .extra{
+        display: none;
     }
     
     .header-left-side {
