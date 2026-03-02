@@ -1,33 +1,5 @@
 const mongoose=require('mongoose');
 
-const userSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: true,
-    trim: true
-  },
-  email: {
-    type: String,
-    required: true,
-    unique: true,
-    lowercase: true
-  },
-  password: {
-    type: String,
-    required: true,
-    select:false
-  },
-  role: {
-    type: String,
-    enum: ['jobseeker', 'recruiter','admin'],
-    default: 'jobseeker'
-  },
-  createdAt: {
-    type: Date,
-    default: Date.now
-  }
-});
-
 const adminSchema = new mongoose.Schema({
   name: { type: String, required: true },
   email: { type: String, unique: true, required: true },
@@ -68,10 +40,8 @@ const jobSeekerSchema = new mongoose.Schema({
   socialLinks:[{
     instagram:String,
     facebook:String,
-    github:String,
-    linkedin:String,
+    linkedin:String,  
     website:String,
-    x:String,
   }],
   education: [{
     school: String,
@@ -96,6 +66,7 @@ const recruiterSchema = new mongoose.Schema({
   coverPhoto:{url:String, publicId:String},
   companyWebsite: String,
   companyDescription: String,
+  role:{type:String,default:"recruiter"},
   location: String,
   phoneNo: Number,
 
@@ -103,9 +74,8 @@ const recruiterSchema = new mongoose.Schema({
 
   createdAt: { type: Date, default: Date.now }
 });
-const user= mongoose.model('User',userSchema);
 const jobSeeker=mongoose.model('jobseeker',jobSeekerSchema);
 const recruiter=mongoose.model('recruiter',recruiterSchema);
 const admin=mongoose.model('admin',adminSchema);
 
-module.exports = {user,jobSeeker,recruiter,admin};
+module.exports = {jobSeeker,recruiter,admin};

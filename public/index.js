@@ -1,9 +1,9 @@
 const authOptions= document.querySelector('.auth-options');
 const toDashBoardBtn=document.querySelector('.home-dashboard');
-
+ const mobileMenu=document.querySelector('.mobile-menu');
 let user;
 
- const getCurrentUser = () => {
+export const getCurrentUser = () => {
     const token = localStorage.getItem('token');
     if (!token) return null;
 
@@ -27,10 +27,11 @@ let user;
     }
 };
 
- const attachCredentials=()=>{
+export const attachCredentials=()=>{
     if(user === null){
       toDashBoardBtn.style.display="none";
     }else{
+        if(mobileMenu){
       mobileMenu.innerHTML=` 
       <a href="jobs.html">Jobs</a>
       <a href="assets.html">Dashboard</a>
@@ -45,6 +46,7 @@ let user;
       <img class="user-profile" src="${user.profilePic}" alt="">
       `
     }
+}
 }
 
 document.addEventListener("DOMContentLoaded",()=>{

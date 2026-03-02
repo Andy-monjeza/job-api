@@ -224,6 +224,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     const data = await fetchJobsFeed(1); 
     if (data && data.success) {
       renderJobCards(data.jobs);
+      console.log(data)
     }
   } catch (err) {
     console.log("Error loading feed:", err.message);

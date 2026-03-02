@@ -1,5 +1,5 @@
 const bcrypt=require('bcrypt');
-const {user, jobSeeker, recruiter}=require('../apiSchemas/usersSchema')
+const {jobSeeker, recruiter}=require('../apiSchemas/usersSchema')
 
 const jwt=require('jsonwebtoken');
 require('dotenv').config();

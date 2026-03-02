@@ -1,0 +1,222 @@
+\<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="stylesheet" href="welcome.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Welcome Setup</title>
+
+
+</head>
+<body>
+
+<div class="form-container">
+
+    <!-- STEP 1 -->
+    <div class="step active" id="step1">
+        <h2>Welcome, tell us about you</h2>
+
+        <div class="grid grid-2x2">
+
+            <div class="input-group">
+                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                    <circle cx="12" cy="7" r="4"/>
+                </svg>
+                <input type="text" id="name" placeholder="phone-number">
+            </div>
+
+            <div class="input-group">
+                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 1 1 18 0z"/>
+                    <circle cx="12" cy="10" r="3"/>
+                </svg>
+                <input type="text" id="location" placeholder="Location">
+            </div>
+
+            <div class="input-group">
+                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <rect x="2" y="7" width="20" height="14" rx="2"/>
+                    <path d="M16 3H8v4h8V3z"/>
+                </svg>
+                <input type="text" id="profession" placeholder="Profession">
+            </div>
+
+            <div class="input-group">
+                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path d="M14 2l7 7-4 4-7-7 4-4z"/>
+                    <path d="M3 21l6-6"/>
+                </svg>
+                <input type="text" id="skills" placeholder="Skills">
+            </div>
+
+        </div>
+
+        <button onclick="nextStep(1)">Next</button>
+    </div>
+
+    <!-- STEP 2 -->
+    <div class="step" id="step2">
+        <h2>Education</h2>
+
+        <div class="grid grid-2x2">
+
+            <div class="input-group">
+                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path d="M22 10L12 5 2 10l10 5 10-5z"/>
+                    <path d="M6 12v5c0 2 6 2 6 2s6 0 6-2v-5"/>
+                </svg>
+                <input type="text" id="school" placeholder="School">
+            </div>
+
+            <div class="input-group">
+                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path d="M12 14l9-5-9-5-9 5 9 5z"/>
+                </svg>
+                <input type="text" id="degree" placeholder="Degree">
+            </div>
+
+            <div class="input-group">
+                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="10"/>
+                </svg>
+                <input type="text" id="field" placeholder="Field">
+            </div>
+
+        </div>
+
+        <button onclick="nextStep(2)">Next</button>
+    </div>
+
+    <!-- STEP 3 -->
+    <div class="step" id="step3">
+        <h2>Social Links</h2>
+
+        <div class="grid grid-2x2">
+
+            <div class="input-group">
+                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <rect x="2" y="2" width="20" height="20" rx="5"/>
+                </svg>
+                <input type="text" id="instagram" placeholder="Instagram">
+            </div>
+
+            <div class="input-group">
+                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <rect x="2" y="2" width="20" height="20" rx="5"/>
+                </svg>
+                <input type="text" id="facebook" placeholder="Facebook">
+            </div>
+
+            <div class="input-group">
+                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="10"/>
+                </svg>
+                <input type="text" id="website" placeholder="Website">
+            </div>
+
+            <div class="input-group">
+                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <rect x="4" y="4" width="16" height="16"/>
+                </svg>
+                <input type="text" id="linkedin" placeholder="LinkedIn">
+            </div>
+
+        </div>
+
+        <button>Finish</button>
+    </div>
+
+</div>
+
+<script>
+    // ===============================
+// INPUT REFERENCES
+// ===============================
+
+// Step 1
+const nameInput = document.querySelector('#name');
+const locationInput = document.querySelector('#location');
+const professionInput = document.querySelector('#profession');
+const skillsInput = document.querySelector('#skills');
+
+// Step 2
+const schoolInput = document.querySelector('#school');
+const degreeInput = document.querySelector('#degree');
+const fieldInput = document.querySelector('#field');
+
+// Step containers
+const step1 = document.querySelector('#step1');
+const step2 = document.querySelector('#step2');
+const step3 = document.querySelector('#step3');
+
+// Buttons
+const step1Btn = step1.querySelector('button');
+const step2Btn = step2.querySelector('button');
+
+
+// ===============================
+// VALIDATION FUNCTION
+// ===============================
+
+function validateFields(fieldsArray) {
+    let isValid = true;
+
+    fieldsArray.forEach(input => {
+        if (input.value.trim() === '') {
+            input.parentElement.style.borderColor = 'red';
+            isValid = false;
+        } else {
+            input.parentElement.style.borderColor = '#ccc';
+        }
+    });
+
+    return isValid;
+}
+
+
+// ===============================
+// STEP 1 VALIDATION
+// ===============================
+
+step1Btn.addEventListener('click', () => {
+
+    const step1Fields = [
+        nameInput,
+        locationInput,
+        professionInput,
+        skillsInput
+    ];
+
+    if (validateFields(step1Fields)) {
+        step1.classList.remove('active');
+        step2.classList.add('active');
+    }
+
+});
+
+
+// ===============================
+// STEP 2 VALIDATION
+// ===============================
+
+step2Btn.addEventListener('click', () => {
+
+    const step2Fields = [
+        schoolInput,
+        degreeInput,
+        fieldInput
+    ];
+
+    if (validateFields(step2Fields)) {
+        step2.classList.remove('active');
+        step3.classList.add('active');
+    }
+
+});
+</script>
+
+<script src="welcome-page.js"></script>
+
+</body>
+</html>

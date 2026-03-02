@@ -17,7 +17,7 @@ const fetchUserProfile = async () => {
         });
 
         const data = await response.json();
-        
+        console.log(data)
         if (!response.ok) {
             throw new Error(data.message || 'Failed to fetch profile');
         }
@@ -29,45 +29,57 @@ const fetchUserProfile = async () => {
     }
 };
 
-export const buildProfile=async()=>{
-    const userName=document.querySelector('.Username');
-    const profilePicture=document.querySelector('.profile-picture');
-    const coverPhoto=document.querySelector('.cover-photo');
-    const email=document.querySelectorAll('.email');
-    const topSocialLink=document.querySelector('.top-social-link');
-    const location=document.querySelectorAll('.location');
-    const profession=document.querySelector('.skillset') || null;
-    const phoneNo=document.querySelector('.phoneNo');
+export const buildProfile = async () => {
+    // Selectors
+    const userName = document.querySelector('.Username');
+    const profilePicture = document.querySelector('.profile-picture');
+    const coverPhoto = document.querySelector('.cover-photo');
+    const emails = document.querySelectorAll('.email'); // Renamed to plural for clarity
+    const topSocialLink = document.querySelector('.top-social-link');
+    const locations = document.querySelectorAll('.location'); // Renamed to plural
+    const profession = document.querySelector('.skillset');
+    const phoneNo = document.querySelector('.phoneNo');
 
-    
-    try{
-        const profile=await fetchUserProfile();
-        if(profile){ 
-            userName.textContent=profile.userDetails.name;
-
-            email.forEach(e=>{
-                if(e.classList.contains('info-part')){
-                    e.innerHTML=profile.userDetails.email;
-                }else{e.innerHTML=`<i class="fa-solid fa-envelope"></i>`+ profile.userDetails.email;}
-                
-            })
-              location.forEach(e=>{
-              
-                   if(e.classList.contains('info-part')){
-                    e.innerHTML=profile.userDetails.location;
-                }else{e.innerHTML=`<i class="fa-solid fa-location-dot"></i>`+ profile.userDetails.location;}
-              
-            })
-            profilePicture.src=profile.userDetails.profilePicture.url ;
-            topSocialLink.textContent=profile.userDetails.prefsocialLink || ' ';
-            phoneNo.textContent= '+' + profile.userDetails.phoneNo
-            profession.textContent=profile.userDetails.Profession;
-            location.innerHTML=  `<i class="fa-solid fa-location-dot"></i>` + profile.userDetails.location;  
-            console.log(profile);
-        }
-    }catch(err){
+    try {
+        const profile = await fetchUserProfile();
         
+        // Ensure profile and profile.userDetails exist before proceeding
+        if (profile && profile.userDetails) {
+            const user = profile.userDetails;
+
+            // Use optional chaining (?.) to prevent crashes if elements are missing
+            if (userName) userName.textContent = user.name || 'Anonymous';
+            
+            if (profilePicture) {
+                // If the URL is missing, use that blank placeholder we discussed!
+                profilePicture.src = user.profilePicture?.url || 'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png';
+            }
+
+            if (topSocialLink) topSocialLink.textContent = user.prefsocialLink || '';
+            if (phoneNo) phoneNo.textContent = user.phoneNo ? `+${user.phoneNo}` : '';
+            if (profession) profession.textContent = user.Profession || user.role || '';
+
+            // Handle multiple Email fields
+            emails.forEach(e => {
+                if (e.classList.contains('info-part')) {
+                    e.textContent = user.email;
+                } else {
+                    e.innerHTML = `<i class="fa-solid fa-envelope"></i> ${user.email}`;
+                }
+            });
+
+            // Handle multiple Location fields
+            locations.forEach(e => {
+                if (e.classList.contains('info-part')) {
+                    e.textContent = user.location;
+                } else {
+                    e.innerHTML = `<i class="fa-solid fa-location-dot"></i> ${user.location}`;
+                }
+            });
+
+            // REMOVED: location.innerHTML = ... (This was the main bug)
+        }
+    } catch (err) {
+        console.error("Error building profile UI:", err);
     }
- 
-     
-}
+};

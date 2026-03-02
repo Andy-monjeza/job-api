@@ -75,7 +75,12 @@ const sendRequest = async () => {
             
            
             setTimeout(() => {
-                window.location.replace("index.html");
+                if(activeRole === "recruiter"){
+                window.location.replace("recruiter-welcome.html");
+            }
+                else if(activeRole === "jobseeker"){
+                   window.location.replace("welcome.html")
+                }
             }, 1500);
         } else {
             showMessage(data.message || "Registration failed", "msg-error");

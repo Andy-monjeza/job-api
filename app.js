@@ -20,6 +20,7 @@ const myAPplicationsRoute=require('./routes/myApplicationsRoute.js')
 const getMarketDemandStatsRoute=require('./routes/marketDemandStatsRoute.js');
 const recruiterAnalytics=require('./routes/recruiterAnalytics.js')
 const getRecruiterApplicants=require('./routes/getRecruiterApplicantsRoute.js')
+const welcomeUser=require('./routes/welcome-page-route.js');
 
 app.use(express.static('public'))
 app.use('/api',limit);
@@ -47,6 +48,7 @@ app.use('/api/applications',myAPplicationsRoute);
 app.use('/api/market-demand',getMarketDemandStatsRoute);
 app.use('/api/analytics',recruiterAnalytics);
 app.use('/api/applicants',getRecruiterApplicants);
+app.use('/api/welcome-user',welcomeUser);
 
 app.listen(5000,()=>{
    
