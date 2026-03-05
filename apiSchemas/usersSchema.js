@@ -13,13 +13,19 @@ const adminSchema = new mongoose.Schema({
 
 const jobSeekerSchema = new mongoose.Schema({
   name: { type: String, required: true },
-  email: { type: String, unique: true, required: true },
+  email: {
+  type: String,
+  unique: true,
+  required: true,
+  lowercase: true,
+  trim: true
+},
   password: { type: String, required: true ,select:false},
-  role:{type:String,enum:['jobseeker'],default:"jobseeker"},
+  role:{type:String,default:"jobseeker"},
   phoneNo:Number,
   skills:{
     type:[String],
-    defult:[]
+    default:[]
   },
   experience:{type:String},
   location: String,
@@ -32,17 +38,23 @@ const jobSeekerSchema = new mongoose.Schema({
         default: null
     }
 },
-  coverPhoto:{url:String, publicId:String},
+  coverPhoto: {
+  url: String,
+  publicId: {
+    type: String,
+    default: null
+  }
+},
   Profession:String,
   preferedCategory:String,
   about:String,
 
-  socialLinks:[{
-    instagram:String,
-    facebook:String,
-    linkedin:String,  
-    website:String,
-  }],
+socialLinks: {
+  instagram: String,
+  facebook: String,
+  linkedin: String,
+  website: String
+},
   education: [{
     school: String,
     degree: String,
@@ -53,9 +65,7 @@ const jobSeekerSchema = new mongoose.Schema({
   resumeUrl: String,
   CVurl:String,
   portfolioUrl: String,
-
-  createdAt: { type: Date, default: Date.now }
-});
+},{timestamps:true});
 
 const recruiterSchema = new mongoose.Schema({
   name: { type: String, required: true },

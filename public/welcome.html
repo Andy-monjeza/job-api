@@ -23,7 +23,7 @@
                     <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
                     <circle cx="12" cy="7" r="4"/>
                 </svg>
-                <input type="text" id="name" placeholder="phone-number">
+                <input type="text" id="phone-number" placeholder="phone-number">
             </div>
 
             <div class="input-group">
@@ -52,7 +52,7 @@
 
         </div>
 
-        <button onclick="nextStep(1)">Next</button>
+        <button id="next-btn">Next</button>
     </div>
 
     <!-- STEP 2 -->
@@ -124,97 +124,12 @@
 
         </div>
 
-        <button>Finish</button>
+        <button id="finish">Finish</button>
     </div>
 
 </div>
 
-<script>
-    // ===============================
-// INPUT REFERENCES
-// ===============================
 
-// Step 1
-const nameInput = document.querySelector('#name');
-const locationInput = document.querySelector('#location');
-const professionInput = document.querySelector('#profession');
-const skillsInput = document.querySelector('#skills');
-
-// Step 2
-const schoolInput = document.querySelector('#school');
-const degreeInput = document.querySelector('#degree');
-const fieldInput = document.querySelector('#field');
-
-// Step containers
-const step1 = document.querySelector('#step1');
-const step2 = document.querySelector('#step2');
-const step3 = document.querySelector('#step3');
-
-// Buttons
-const step1Btn = step1.querySelector('button');
-const step2Btn = step2.querySelector('button');
-
-
-// ===============================
-// VALIDATION FUNCTION
-// ===============================
-
-function validateFields(fieldsArray) {
-    let isValid = true;
-
-    fieldsArray.forEach(input => {
-        if (input.value.trim() === '') {
-            input.parentElement.style.borderColor = 'red';
-            isValid = false;
-        } else {
-            input.parentElement.style.borderColor = '#ccc';
-        }
-    });
-
-    return isValid;
-}
-
-
-// ===============================
-// STEP 1 VALIDATION
-// ===============================
-
-step1Btn.addEventListener('click', () => {
-
-    const step1Fields = [
-        nameInput,
-        locationInput,
-        professionInput,
-        skillsInput
-    ];
-
-    if (validateFields(step1Fields)) {
-        step1.classList.remove('active');
-        step2.classList.add('active');
-    }
-
-});
-
-
-// ===============================
-// STEP 2 VALIDATION
-// ===============================
-
-step2Btn.addEventListener('click', () => {
-
-    const step2Fields = [
-        schoolInput,
-        degreeInput,
-        fieldInput
-    ];
-
-    if (validateFields(step2Fields)) {
-        step2.classList.remove('active');
-        step3.classList.add('active');
-    }
-
-});
-</script>
 
 <script src="welcome-page.js"></script>
 
