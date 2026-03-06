@@ -5,9 +5,8 @@ const updateFullProfile = async (req, res) => {
     try {
         const userId = req.user.id;
         const userRole = req.user.role;
-        let updateData = { ...req.body }; // This catches Name, Skills, Bio, etc.
+        let updateData = { ...req.body }; 
 
-        // 1. Handle Image Upload if a file exists
         if (req.file) {
             const streamUpload = (buffer) => {
                 return new Promise((resolve, reject) => {
@@ -18,7 +17,7 @@ const updateFullProfile = async (req, res) => {
                             else reject(error);
                         }
                     );
-                    stream.end(buffer);
+                    stream.end(buffer); 
                 });
             };
 

@@ -1,4 +1,6 @@
 const { recruiter, jobSeeker } = require('../apiSchemas/usersSchema.js');
+const { cloudinary } = require('../utils/cloudinary.js'); 
+const jwt=require('jsonwebtoken');
 
 const getUserCredentials = async (req, res) => {
     try {
@@ -37,6 +39,28 @@ const getUserCredentials = async (req, res) => {
             }
         });
 
+         if (req.file) {
+            const streamUpload = (buffer) => {
+                return new Promise((resolve, reject) => {
+                    const stream = cloudinary.uploader.upload_stream(
+                        { folder: "infinite_jobs_profiles" },
+                        (error, result) => {
+                            if (result) resolve(result);
+                            else reject(error);
+                        }
+                    );
+                    stream.end(buffer); 
+                });
+            };
+
+            const result = await streamUpload(req.file.buffer);
+        
+            filteredBody.profilePicture = {
+                url: result.secure_url,
+                publicId: result.public_id
+            };
+        }
+
         let updatedUser;
 
         if (role === "recruiter") {
@@ -73,10 +97,21 @@ const getUserCredentials = async (req, res) => {
             });
         }
 
+            const sessionToken = jwt.sign({
+                   name: req.user.name || newUser.companyName, 
+                   role: req.user.role, 
+                   email: req.user.email, 
+                   id: req.user._id,
+                   profilePic:newUser.profilePicture.url,
+               },
+               process.env.JWT_SECRET,
+               { expiresIn: '1h' });
+
         return res.status(200).json({
             success: true,
             message: "Successfully updated credentials",
-            user: updatedUser
+            user: updatedUser,
+            sessionToken
         });
 
     } catch (err) {
