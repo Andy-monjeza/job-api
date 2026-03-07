@@ -97,7 +97,7 @@ function renderJobCards(jobs) {
   const jobCardsHTML = jobs.map(job => `
     <div data-job-id="${job._id}" class="job-rect-card">
         <div class="job-card-header">
-            <img src="${job.postedBy.profilePicture || 'https://picsum.photos/seed/tech1/100'}" alt="Company" class="company-logo-rect">
+            <img src="${job.postedBy.profilePicture.url || 'https://picsum.photos/seed/tech1/100'}" alt="Company" class="company-logo-rect">
             <div class="job-main-info">
                 <span class="job-role-title">${job.title}</span>
                 <span class="company-meta">${job.postedBy.name}</span>
@@ -137,7 +137,7 @@ const renderJobPreview = (job) => {
         <div class="top-part">
 
          <div class="job-preview-header">
-         <img src="${job.postedBy.profilePicture || 'https://picsum.photos/seed/tech1/100'}" alt="Company" class="company-logo-rect">
+         <img src="${job.postedBy.profilePicture.url || 'https://picsum.photos/seed/tech1/100'}" alt="Company" class="company-logo-rect">
         <div class="title-area">
         <h1>${job.title}</h1>
         <div class="company-name">
