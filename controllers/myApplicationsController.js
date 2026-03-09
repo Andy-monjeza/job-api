@@ -11,7 +11,7 @@ const getMyApplications=async(req,res)=>{
         populate: {
             path: 'postedBy', 
             model: 'recruiter',
-            select: 'companyName companyWebsite profilePicture' 
+            select: 'companyName companyWebsite profilePicture name' 
         }
     }).exec();
 

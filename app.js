@@ -50,9 +50,9 @@ app.use('/api/analytics',recruiterAnalytics);
 app.use('/api/applicants',getRecruiterApplicants);
 app.use('/api/welcome-user',welcomeUser);
 
-app.listen(5000,()=>{
+app.listen(port || 5000,()=>{
    
-    console.log('app listening on port 5000')
+    console.log(`app listening on port ${port || 5000}`)
 })
 
 module.exports=app;

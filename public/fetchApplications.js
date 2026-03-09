@@ -41,7 +41,7 @@ const fetchApplications= async()=>{
 
    
     applications.forEach(a => {
-       
+       console.log(a)
         const status = a.status.toLowerCase();
         if (counts.hasOwnProperty(status)) {
             counts[status]++;
@@ -56,7 +56,7 @@ const fetchApplications= async()=>{
         listHTML += `
         <div class="job-rect-card">
             <div class="job-card-header">
-                <img src="${a.job?.postedBy?.profilePicture || 'https://picsum.photos/seed/tech1/100'}" class="company-logo-rect">
+                <img src="${a.job?.postedBy?.profilePicture.url || 'https://picsum.photos/seed/tech1/100'}" class="company-logo-rect">
                 <div class="job-main-info">
                     <span class="job-role-title">${a.job?.title}</span>
                     <span class="company-meta">${a.job?.category} • Applied ${appliedDate}</span>

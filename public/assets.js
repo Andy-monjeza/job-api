@@ -129,7 +129,7 @@ sideBar.addEventListener('click', async (e) => {
         
         const data = await fetchData('/api/assets/dashboard', 'GET', 'text/html');
         const applicationCount = await updateApplicationsCount();
-        
+        console.log(applicationCount)
         if (data) {
             contentSection.innerHTML = data;
          
