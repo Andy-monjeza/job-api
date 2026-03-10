@@ -9,7 +9,7 @@ const unreadMessagesCount=document.querySelector('.unread-messages-count');
 export const updateApplicationsCount=async()=>{
     const sessionToken=localStorage.getItem('token');
     try{
-       const response = await fetch('http://localhost:5000/api/applications/get-my-applications',{
+       const response = await fetch('/api/applications/get-my-applications',{
         headers:{Authorization:`Bearer ${sessionToken}`}
        });
        
@@ -37,7 +37,7 @@ const fetchUserPrefCategory=async()=>{
 const fetchMarketStats = async (userCategory) => {
 
        const sessionToken=localStorage.getItem('token');
-    const response = await fetch(`http://localhost:5000/api/market-demand/stats/market?category=${userCategory}`,{
+    const response = await fetch(`/api/market-demand/stats/market?category=${userCategory}`,{
        headers:{'Authorization':`Bearer ${sessionToken}`}
     });
     return await response.json(); 
