@@ -290,6 +290,20 @@
     margin-top: 10px;
 }
 
+.close-btn{
+    background-color: transparent;
+    border: none;
+    cursor:pointer;
+}
+
+.options-btn, .dots-btn{
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+.options-btn:hover, .dots-btn{
+    color: rgb(82, 77, 77);
+}
 /* --- 5. Mobile Adjustments --- */
 @media screen and (max-width: 768px) {
     .job-manager-container { padding: 1.2em; }
@@ -338,6 +352,203 @@
 
     .user-profile-info { flex-direction: row-reverse; }
 }
+
+
+/* MODAL CONTAINER */
+
+.applicant-modal{
+  position: fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  visibility:hidden;
+  opacity:0;
+  transition:0.3s;
+  z-index:1000;
+}
+
+.applicant-modal.active{
+  visibility:visible;
+  opacity:1;
+}
+
+/* OVERLAY */
+
+.modal-overlay{
+  position:absolute;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.45);
+}
+
+/* MODAL BOX */
+
+.modal-content{
+  position:relative;
+  width:500px;
+  max-width:90%;
+  background:white;
+  border-radius:12px;
+  padding:30px;
+  box-shadow:0 20px 50px rgba(0,0,0,0.2);
+  animation:modalPop 0.25s ease;
+}
+
+/* POP ANIMATION */
+
+@keyframes modalPop{
+  from{
+    transform:scale(0.9);
+    opacity:0;
+  }
+  to{
+    transform:scale(1);
+    opacity:1;
+  }
+}
+
+/* CLOSE BUTTON */
+
+.modal-close{
+  position:absolute;
+  top:15px;
+  right:15px;
+  border:none;
+  font-size:22px;
+  background:none;
+  cursor:pointer;
+}
+
+/* HEADER */
+
+.modal-header{
+  display:flex;
+  align-items:center;
+  color: black;
+  padding: 0.2em 1em;
+  gap:8px;
+  margin-bottom:20px;
+}
+
+.modal-avatar{
+  width:100px;
+  height:100px;
+  border-radius:50%;
+  object-fit:cover;
+}
+
+.modal-name{
+  margin:0;
+  
+}
+
+.modal-role{
+  margin:2px 0;
+  color:#666;
+}
+
+.modal-location{
+  font-size:14px;
+  color:#141414;
+}
+
+/* BODY */
+
+.profile-section{
+  margin-bottom:18px;
+}
+
+.profile-section h3{
+  margin-bottom:6px;
+  font-size:15px;
+  color: rgb(46, 45, 45);
+}
+.profile-section p{
+    color: black;
+}
+/* SKILLS */
+
+.skills{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+}
+
+.skills span{
+  background:#f1f3f5;
+  padding:6px 10px;
+  border-radius:6px;
+  font-size:13px;
+  color: #0d0e0f;
+}
+
+/* ACTION BUTTONS */
+
+.modal-actions{
+  display:flex;
+  gap:12px;
+  margin-top:20px;
+}
+
+.download-btn{
+  flex:1;
+  padding:10px;
+  border:none;
+  border-radius:8px;
+  background:#2563eb;
+  color:white;
+  cursor:pointer;
+}
+
+.message-btn{
+  flex:1;
+  padding:10px;
+  border:none;
+  border-radius:8px;
+  background:#0f172a;
+  color:white;
+  cursor:pointer;
+}
+
+
+
+@media (max-width: 600px){
+
+  .modal-content{
+    width:95%;
+    padding:20px;
+    max-height:90vh;
+    overflow-y:auto;
+  }
+
+  .modal-header{
+    flex-direction:column;
+    align-items:center;
+    text-align:center;
+  }
+
+  .modal-avatar{
+    width:70px;
+    height:70px;
+  }
+
+  .modal-actions{
+    flex-direction:column;
+  }
+
+  .download-btn,
+  .message-btn{
+    width:100%;
+  }
+
+}
+
+
+
 
 @media screen and (max-width: 768px) {
     /* 1. Hide the table headers on mobile */

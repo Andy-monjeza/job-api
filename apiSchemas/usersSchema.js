@@ -29,6 +29,7 @@ const jobSeekerSchema = new mongoose.Schema({
   },
   experience:{type:String},
   location: String,
+  about:{type:String, default:"No About Included Yet"},
   profilePicture: {
     url: {
         type: String

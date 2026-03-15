@@ -82,7 +82,7 @@ const formData = new FormData();
 
 formData.append("phoneNo", phoneInput.value);
 formData.append("location", locationInput.value);
-formData.append("profession", professionInput.value);
+formData.append("Profession", professionInput.value);
 
 // skills array
 skillsInput.value.split(',').map(s => s.trim()).forEach(skill => {

@@ -65,4 +65,33 @@ const updateProfile = async (req, res) => {
         res.status(500).json({ success: false, message: "Internal server error during update" });
     }
 };
-module.exports={getProfile,updateProfile};
+
+const getApplicantProfile = async (req, res) => {
+    const { profileId } = req.params;
+     console.log(profileId)
+    try {
+       
+        const profile = await jobSeeker.findById(profileId).exec();
+        console.log(profile)
+       
+        if (!profile) {
+            return res.status(404).json({ 
+                success: false, 
+                message: "User profile not found" 
+            });
+        }
+
+        return res.status(200).json({ success: true, profile });
+
+    } catch (err) {
+        console.error("Error fetching profile:", err.message);
+
+        return res.status(500).json({ 
+            success: false, 
+            message: "Internal server error",
+            error: err.message // Optional: only for development
+        });
+    }
+};
+
+module.exports={getProfile,updateProfile,getApplicantProfile};

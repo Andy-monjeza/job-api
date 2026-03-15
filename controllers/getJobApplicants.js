@@ -33,6 +33,7 @@ const getAllRecruiterApplicants = async (req, res) => {
             {
                 $project: {
                     _id: 1,
+                    applicantId: '$applicantDetails._id',
                     status: 1,
                     appliedOn: 1,
                     cv: 1,

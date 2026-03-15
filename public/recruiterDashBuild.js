@@ -8,7 +8,9 @@ import {
     loadApplicants,
     updateJobFilterOptions,
     populateApplicantTable,
-    filterJobs
+    filterJobs,
+    openApplicantModal,
+    closeApplicantsModal
 } from "./recruiter-build-helper.js";
 
 const contentSection=document.querySelector('.content-bar');
@@ -164,6 +166,8 @@ export const setupRecruiterListeners = () => {
     const jobManagerOption = document.querySelector('.manage-jobs');
     const dashBoardOption= document.querySelector('.recruiter-dash')
     const applicantsOption=document.querySelector('.view-applicants');
+    const ModalClose=document.querySelector('.modal-close');
+   
 
     jobManagerOption.addEventListener('click', async () => {
         await buildJobManagerTab();
@@ -201,6 +205,7 @@ export const setupRecruiterListeners = () => {
     
     // 2. Fetch and render data
     const applicants = await loadApplicants();
+   
     populateApplicantTable(applicants);
     updateJobFilterOptions(applicants);
 
@@ -223,6 +228,24 @@ export const setupRecruiterListeners = () => {
             await handleJobSubmission(e.target);
         }
     });
+ 
+    contentSection.addEventListener('click', (e) => {
+        const btn = e.target.closest('.options-btn');
+        const closeBtnModal=document.querySelector('.modal-close');
+        const modal= document.querySelector('.applicant-modal');
+        
+        if (btn) {
+            const id = btn.dataset.applicantId;
+        openApplicantModal(id);
+        }
+
+        if(closeBtnModal){
+            closeApplicantsModal();
+        }
+    
+    });
+    
+    
 };
 
 window.filterJobs = () => {

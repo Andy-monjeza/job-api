@@ -164,7 +164,6 @@ async function loadApplicants() {
         });
 
         const applicants = await response.json();
-
         if (response.ok) {
             return applicants;
         } else {
@@ -228,8 +227,10 @@ const populateApplicantTable = (applicants) => {
         </div>
     </td>
     <td data-label="Actions" class="action-cell">
-        <button class="options-btn" onclick="openApplicantMenu('${app._id}')">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="1"/><circle cx="12" cy="5" r="1"/><circle cx="12" cy="19" r="1"/></svg>
+        <button class="options-btn" data-applicant-id="${app.applicantId}">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="2"><circle cx="12" cy="12" r="1"/><circle cx="12" cy="5" r="1"/><circle 
+             cx="12" cy="19" r="1"/></svg>
         </button>
     </td>
 `;
@@ -237,6 +238,92 @@ const populateApplicantTable = (applicants) => {
     });
 };
 
+const fetchApplicantProfile=async(id)=>{
+  try{
+    const response=await fetch(`api/user/users/profiles/${id}`);
+    return response.json();
+  }catch(err){
+    console.log(err.message);
+  }
+}
+
+const openApplicantModal=async(id)=>{
+   try{
+    const modal=document.querySelector('.applicant-modal');
+    const applicant=await fetchApplicantProfile(id);
+    console.log(applicant)
+    modal.classList.add('active');
+
+    const skillsHTML = applicant.profile.skills
+    .map(skill => `<span>${skill}</span>`)
+    .join("");
+    
+    modal.innerHTML=`
+  <div class="modal-content">
+
+    <button class="modal-close">&times;</button>
+
+    <div class="modal-header">
+
+      <img src="${applicant.profile.profilePicture.url}" class="modal-avatar">
+
+      <div class="modal-user-info">
+        <h2 class="modal-name">${applicant.profile.name}</h2>
+        <p class="modal-role">${applicant.profile.proffession}</p>
+        <span class="modal-location">${applicant.profile.location}</span>
+      </div>
+
+    </div>
+
+    <div class="modal-body">
+
+      <div class="profile-section">
+        <h3>About</h3>
+        <p>
+         ${applicant.profile.about}
+        </p>
+      </div>
+
+      <div class="profile-section">
+        <h3>Skills</h3>
+
+        <div class="skills">
+         ${skillsHTML}
+        </div>
+
+      </div>
+
+      <div class="profile-section">
+        <h3>Email</h3>
+        <p>${applicant.profile.email}</p>
+      </div>
+
+    </div>
+
+    <div class="modal-actions">
+
+      <button class="download-btn">
+        Download CV
+      </button>
+
+      <button class="message-btn">
+        Message ${applicant.profile.name.split(" ")[0]}
+      </button>
+
+    </div>
+
+  </div>
+
+    `
+     
+   }catch(err){
+    console.log(err.message);
+   }
+}
+const closeApplicantsModal=()=>{
+   const modal= document.querySelector('.applicant-modal');
+   modal.classList.remove('active');
+}
 
 const filterJobs = () => {
     const searchInput = document.getElementById('jobSearch');
@@ -274,5 +361,7 @@ export {
     loadApplicants,
     updateJobFilterOptions,
     populateApplicantTable,
-    filterJobs
+    filterJobs,
+    openApplicantModal,
+    closeApplicantsModal
 };
