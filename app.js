@@ -51,9 +51,6 @@ app.use('/api/applicants',getRecruiterApplicants);
 app.use('/api/welcome-user',welcomeUser);
 
 
-console.log("This is a lesson");
-
-
 app.listen(port || 5000,()=>{
    
     console.log(`app listening on port ${port || 5000}`)
